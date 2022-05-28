@@ -19,7 +19,7 @@ locale                   : "ko-KR"
 title                    : "Kalphageek's Tech Note"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
+name                     : "Kalphageek"
 description              : "An amazing website."
 url                      : "https://kalphageek.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
