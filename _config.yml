@@ -96,19 +96,20 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "G-SSWJFSJ8XW"
     anonymize_ip         : # true, false (default)
 
 
 # Site Author
 author:
   name             : "Kalphageek"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Kalphageek의 블로그"
-  location         : "South Korea"
-  email            :
+  avatar           : 최대 1 분 소요
+
+Typora 테스트합니다.
+
+
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -259,8 +260,8 @@ tag_archive:
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
-#     - categories
-#     - tags
+#     - categories 최대 1 분 소요
+Typora 테스
 #   layouts:
 #     category: archive-taxonomy
 #     tag: archive-taxonomy
@@ -290,3 +291,4 @@ defaults:
       comments: # true
       share: true
       related: true
+      show_date: true
