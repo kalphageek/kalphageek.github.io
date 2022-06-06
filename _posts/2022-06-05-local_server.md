@@ -8,6 +8,7 @@ tag: [blog]
 
 
 ```bash
+$ cd kalphageek.github.io/
 # Start
 $ bundle exec jekyll serve
 ```
