@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "Kalphageek's Tech Note"
+title                    : "KAlphageek's Tech Note"
 title_separator          : "|"
 subtitle                 : "small positive action"
-name                     : "Kalphageek"
-description              : "Kalphageek의 블로그"
+name                     : "KAlphageek"
+description              : "KAlphageek의 블로그"
 url                      : "https://kalphageek.github.io" 
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -104,9 +104,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Kalphageek"
+  name             : "KAlphageek"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Kalphageek의 블로그"
+  bio              : "KAlphageek의 블로그"
   location         : "South Korea"
   email            :
   links:
