@@ -2,7 +2,7 @@
 layout: single
 title: "Initial Load by OGG (Direct)"
 categories: ogg
-tag: [cdc, dev, sample]
+tag: [ogg, initial, example]
 toc: true
 #author_profile : false
 ---

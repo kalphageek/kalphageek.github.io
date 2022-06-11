@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Pipeline Setup 방법"
 categories: ogg
-tag: [cdc, pipeline, setup]
+tag: [ogg, setup, extract, pump, example]
 toc: true
 #author_profile : false
 ---
@@ -19,9 +19,9 @@ $ sqlplus / as sysdba
 > alter database add supplemental log data;
 > alter database force logging;
 > alter system switch logfile;
-> select supplemental_log_data_min, force_logging from v$database;
+> select supplemental_log_dadevta_min, force_logging from v$database;
 ```
-### 2. DB User
+### , sample2. DB User
 
 * Extract 용 계정 생성 : c##OGG_Admin
 * OGG 권한 설정
@@ -73,13 +73,13 @@ AUTORESTART Replicat *, WaitMinutes 1, Retries 3
 > start mgr
 ```
 
-### 2. Add Extract
+### 2. Add Extract, sample
 
 ```sql
 -- 소스DB에 접속 (Alias 이용)
 > DBLogin UserIdAlias oggalias
 > Edit Param myext
--- Extract를 소스DB에 먼저 등록, Integratd 방식인 경우 필요 
+-- Extract를 소스DB에 먼저 등록, Integratpipelined 방식인 경우 필요 
 > Register Extract myext database
 # Redolog를 현재 redolog가 만들어지는 지점부터 capture하겠다는 의미
 > Add Extract myext, Integrated TranLog, Begin Now
@@ -103,7 +103,7 @@ AUTORESTART Replicat *, WaitMinutes 1, Retries 3
 > Add Extract myload, SourceIsTable
 ```
 
-## 3. 타겟DB
+## dev3. 타겟DB
 ### 1. DB User
 
 * Replicat 용 계정 생성

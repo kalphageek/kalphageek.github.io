@@ -2,7 +2,7 @@
 layout: single
 title: "OGG View Report 샘플"
 categories: ogg
-tag: [cdc, report]
+tag: [ogg, report]
 toc: true
 #author_profile : false
 ---

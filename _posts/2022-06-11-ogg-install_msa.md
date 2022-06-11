@@ -2,7 +2,7 @@
 layout: single
 title: "OGG S/W 설치 (MSA)"
 categories: ogg
-tag: [cdc, pipeline, setup, msa]
+tag: [ogg, setup, msa]
 toc: true
 #author_profile : false
 ---

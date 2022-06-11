@@ -2,7 +2,7 @@
 layout: single
 title: "OGG S/W 설치"
 categories: ogg
-tag: [cdc, pipeline, setup]
+tag: [ogg, setup]
 toc: true
 #author_profile : false
 ---

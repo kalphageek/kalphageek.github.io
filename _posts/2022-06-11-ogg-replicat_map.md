@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Replicat Map Sample"
 categories: ogg
-tag: [cdc, dev, replicat, sample]
+tag: [ogg, replicat, example]
 toc: true
 #author_profile : false
 ---
@@ -19,7 +19,7 @@ Filter (ON UPDATE, ON DELETE, @Compute
 
 ## Map
 ```sql
-...
+dev...
 Map HR.CONTACT, Target HR.PHONE,
     ColMap (USEDEFAULTS,
         NAME = CUST_NAME,

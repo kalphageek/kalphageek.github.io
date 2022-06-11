@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Performance View"
 categories: ogg
-tag: [cdc, dictionary]
+tag: [ogg, dictionary, common]
 toc: false
 #author_profile : false
 ---

@@ -2,7 +2,7 @@
 layout: single
 title: "OGG 파라미터, 매크로"
 categories: ogg
-tag: [cdc, dev]
+tag: [ogg, example, replicat, extract, pump, setup]
 toc: true
 #author_profile : false
 ---
@@ -39,11 +39,11 @@ LagCriticalMinutes 5
 
 ## globalExtract
 ```sql
-> edit params extwest
+pipeline> edit params extwest
 Extract extwest
 UserIdAlias oggadmin_root
 -- max_sga_size 256MB
-TranlogOptions IntegratedParams (max_sga_size 256)
+TranlogOptions IntegratpipelineedParams (max_sga_size 256)
 -- Local Trail
 ExtTrail ./dirdat/ewglobal
 -- Supplemental Log 걸린 모든 컬럼을 가져오겠다.
@@ -69,7 +69,7 @@ Table AMER.WEST.TELLER_TRANS;
 
 > DBLogin UserIDAlias oggadmin_root
 > Register Extract extwest database container (amer)
-> DBLogin UserIDAlias oggadmin_amer
+> DBLogin UserIDAlias oggadmin_amerpipeline
 > add extract extwest, integrated tranlog, begin now
 > add exttrail ./dirdat/ew, extract extwest, megabytes 10
 > Start extwest

@@ -2,7 +2,7 @@
 layout: single
 title: "OGG GGSCI Command"
 categories: ogg
-tag: [cdc, cmd]
+tag: [ogg, common, example]
 toc: true
 #author_profile : false
 ---
@@ -21,7 +21,7 @@ $ ggsci
 GGSCI>
 -- lacct 통계정보 보기
 > stats lacct
--- lacct 상태정보 보기
+-- lacct 상태정보 보기pipeline
 > status lacct
 -- extwest lag 보기
 > lag extwest

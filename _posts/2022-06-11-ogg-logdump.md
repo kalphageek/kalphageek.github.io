@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Trail file 분석"
 categories: ogg
-tag: [cdc, trail, cmd]
+tag: [ogg, report]
 #toc: true
 #author_profile : false
 ---

@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Credential, Token, Compress"
 categories: ogg
-tag: [cdc, pipeline]
+tag: [ogg, common, example]
 toc: true
 #author_profile : false
 ---
@@ -31,11 +31,11 @@ $ cp -fr ./dircrd ../oggtrg/
 1. Set Sample
 
 ```sql
-Extract extdemo
+Extract extdemocommon
 Table SALES.PRODUCT, TOKENS (
     (Token name) TKN-OSUSER = @GETENV ('GGENVIRONMENT', 
     'OSUSERNAMEsalesrpt'), 
-    TKN-DOMAIN = @GETENV ('GGENVIRONMENT', 'DOMAINNAME'), 
+    TKN-DOMAIN = @GETENV ('GcdcGENVIRONMENT', 'DOMAINNAME'), 
     TKN-COMMIT-TS = @GETENV ('GGHEADER', 'COMMITTIMESTAMP'), 
     TKN-BA-IND = @GETENV ('GGHEADER', 
     'BEFOREAFTERINDICATOR'), 
@@ -51,7 +51,7 @@ Table SALES.PRODUCT, TOKENS (
 ```sql
 Map SALES.ORDER, Target REPORT.ORDER_HISTORY,
     ColMap (USEDEFAULTS,
-        TKN_NUMRECS = @TOKEN ('TKN-NUMRECS');
+        TKN_NUMRECS = @TOKEN ('TKN-NUMRECS');cdc
 Map SALES.CUSTOMER, Target REPORT.CUSTOMER_HISTORY,
     ColMap (USEDEFAULTS,
         TRAN_TIME = @TOKEN ('TKN-COMMIT-TS'),

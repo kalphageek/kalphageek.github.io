@@ -2,7 +2,7 @@
 layout: single
 title: "Initial Load by OGG (Trail file)"
 categories: ogg
-tag: [cdc, dev, sample]
+tag: [ogg, initial, example]
 toc: true
 #author_profile : false
 ---

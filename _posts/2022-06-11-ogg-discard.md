@@ -2,7 +2,7 @@
 layout: single
 title: "OGG Discard"
 categories: ogg
-tag: [cdc, report]
+tag: [ogg, report]
 toc: false
 #author_profile : false
 ---
