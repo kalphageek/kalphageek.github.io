@@ -17,6 +17,16 @@ $ docker ps [-a]
 
 
 
+## Container 시작/종료/삭제
+
+```bash
+$ docker start centos
+$ docker stop centos
+$ docker container rm centos
+```
+
+
+
 ## Foreground로 실행중인 Catainer에 연결
 
 ```bash
@@ -45,5 +55,14 @@ $ docker top [옵션] centos
 
 ```bash
 $ docker logs [-f] centos
+```
+
+
+
+## 동작중인 Container 리소스 모니터링
+
+```bash
+$ docker stats
+$ docker stats centos
 ```
 
