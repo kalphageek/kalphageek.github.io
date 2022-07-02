@@ -2,7 +2,7 @@
 layout: single
 title: "Docker Network 구성"
 categories: docker
-tag: [docker, network]
+tag: [docker, network, link, wordpress]
 toc: true
 #author_profile : false
 ---
@@ -36,5 +36,26 @@ $ docker network ls
 $ docker run -d --name appjs \
 --net mynet --ip 192.168.100.100 \ # Option : 지정안하면 ip 자동 할당
 -p 8080:8080 kalphageek/appjs
+```
+
+
+
+## Link Container
+
+> --link Option을 통해 동일host의 Container간 연결
+
+```bash
+$ docker run -d --name mariadb -v /dbdata /var/lib/mysql \ # DB 파일 저장 위치
+-e MYSQL_ROOT_PASSWORD=pass \
+-e MYSQL_PASSWORD=wordpress \ #wordpress의 DB password
+mariadb:5.7
+
+$ docker run -d --name wordpress \
+--link mariadb:mariadb \ # mariadb의 Container명:Alias
+-e WORDPRESS_DB_PASSWORD=wordpress -p 80:80 wordpress:4 #wordpress db 자동생성 됨
+
+$ ls /dbdata
+wordpress
+...
 ```
 
