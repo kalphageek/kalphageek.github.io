@@ -2,7 +2,7 @@
 layout: single
 title: "Container Resource 제어"
 categories: docker
-tag: [resource, docker]
+tag: [resource, docker, container]
 toc: true
 #author_profile : false
 ---

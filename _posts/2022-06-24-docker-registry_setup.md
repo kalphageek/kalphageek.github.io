@@ -2,7 +2,7 @@
 layout: single
 title: "Private Docker Registry 설치"
 categories: docker
-tag: [registry, hub, docker]
+tag: [registry, hub, docker, image]
 toc: true
 #author_profile : false
 ---
@@ -13,7 +13,10 @@ toc: true
 
 https://hub.docker.com/  > 검색 : registry > Docker Official Image 선택
 
+[Docker Constainer 재시작 옵션](/docker/docker_container_restart/)
+
 ```
+# 항상 재시작 하라
 $ docker run -d -p 5000:5000 --restart always --name registry registry:2
 ```
 

@@ -2,7 +2,7 @@
 layout: single
 title: "동작중인 Container에 사용할 수 있는 명령어"
 categories: docker
-tag: [runon, container, docker]
+tag: [runon, container, docker, inspect]
 toc: true
 #author_profile : false
 ---
@@ -23,6 +23,8 @@ $ docker ps [-a]
 $ docker start centos
 $ docker stop centos
 $ docker container rm centos
+## Container 강제 삭제
+$ docker rm -f centos
 ```
 
 
@@ -64,5 +66,13 @@ $ docker logs [-f] centos
 ```bash
 $ docker stats
 $ docker stats centos
+```
+
+
+
+## Network/Image/Container/Volume 상세정보 보기
+
+```bash
+$ docker inspect [network명/image명/container명/volume명]
 ```
 

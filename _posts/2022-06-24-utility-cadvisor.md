@@ -7,7 +7,7 @@ toc: true
 #author_profile : false
 ---
 
-> Linux 리소스 모니터링. Web Portal 제공. Docker Container의 모니터링 제공
+> Linux 리소스 모니터링. Web Portal 제공. Host 뿐아니라, Docker Container의 모니터링 제공
 
 > 검색 : cadvisor
 

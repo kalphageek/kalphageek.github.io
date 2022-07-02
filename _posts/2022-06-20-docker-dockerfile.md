@@ -2,7 +2,7 @@
 layout: single
 title: "Dockerfile 명령어"
 categories: docker
-tag: [dockerfile, docker]
+tag: [dockerfile]
 toc: true
 #author_profile : false
 ---
