@@ -22,7 +22,7 @@ toc: true
 | pause   | **Container 일시 정지**<br />$ docker-compose pause          |
 | unpause | **Container 재개**                                           |
 | port    | **공개 Port번호 표시**                                       |
-| config  | **Yaml의 Syntax 확인**<br />$ docker-compose config          |
+| config  | **Yaml의 Syntax 및 환경 변수값 확인**<br />$ docker-compose config |
 | kill    | **실행중인 Container 강제 정지**                             |
 | rm      | **Container 삭제**                                           |
 | down    | **리소스 삭제**<br />$ docker-compose down<br /># 함께 생성된 volumes도 삭제<br />$ docker-compose down --volumes |
