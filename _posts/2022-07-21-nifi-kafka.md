@@ -2,7 +2,7 @@
 layout: single
 title: "Nifi Kafka"
 categories: nifi
-tag: [nifi, kafka, component]
+tag: [nifi, kafka, processor]
 toc: true
 #author_profile : false
 ---

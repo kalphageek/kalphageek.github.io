@@ -20,7 +20,7 @@ toc: true
 
 > nifi를 수집서버, 분석서버 등으로 나누어 처리할 수 있다. 수집서버에서는 Remote Port로 분석버서로 전달하고, 분석서버에서는 Remote Processor Group을 통해 데이터를 전달 받는다. nifi 서버가 자동으로 인식한다.
 
-* Ref : https://www.youtube.com/watch?v=mxnYWTabqqQ&t=987s (37:14)
+* Ref : [https://www.youtube.com/watch?v=mxnYWTabqqQ&t=987s](https://www.youtube.com/watch?v=mxnYWTabqqQ&t=987s) (37:14)
 * Property
   - URLs : http://localhost:18080/nifi   <- 분석서버 nifi url
   ![image](https://user-images.githubusercontent.com/29995416/179385128-60800936-9554-4bc5-9a62-2e8266bc151e.png)
