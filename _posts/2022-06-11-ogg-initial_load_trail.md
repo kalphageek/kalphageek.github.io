@@ -4,6 +4,7 @@ title: "Initial Load by OGG (Trail file)"
 categories: ogg
 tag: [ogg, initial, example]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

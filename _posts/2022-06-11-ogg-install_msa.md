@@ -4,6 +4,7 @@ title: "OGG S/W 설치 (MSA)"
 categories: ogg
 tag: [ogg, setup, msa]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

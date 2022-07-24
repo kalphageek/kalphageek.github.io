@@ -4,6 +4,7 @@ title: "Docker-compose 파라미터 전달 방법"
 categories: docker-compose
 tag: [docker, compose, parameter, shell]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 
@@ -13,7 +14,7 @@ toc: true
 
 
 
-##  및 결과
+##  Docker-compose 파라미터 전달 예
 
 ```
 $ cat docker-compose.yaml

@@ -4,6 +4,7 @@ title: "Private Docker Registry 설치"
 categories: docker
 tag: [registry, hub, docker, image]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "Jenkins 설치"
 categories: jenkins
 tag: [jenkins, install]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

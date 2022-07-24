@@ -4,6 +4,7 @@ title: "OGG Replicat Map Sample"
 categories: ogg
 tag: [ogg, replicat, example]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

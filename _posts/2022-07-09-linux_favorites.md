@@ -4,6 +4,7 @@ title: "Linux Command Favorites"
 categories: linux
 tag: [linux, network, 방화벽, favorites]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

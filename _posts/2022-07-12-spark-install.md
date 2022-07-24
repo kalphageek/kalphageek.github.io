@@ -4,6 +4,7 @@ title: "Spark 설치"
 categories: spark
 tag: [spark, install, pyspark, python]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "OGG Trail file 분석"
 categories: ogg
 tag: [ogg, report]
 #toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

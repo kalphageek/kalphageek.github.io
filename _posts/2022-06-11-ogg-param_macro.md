@@ -4,6 +4,7 @@ title: "OGG 파라미터, 매크로"
 categories: ogg
 tag: [ogg, example, replicat, extract, pump, setup]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

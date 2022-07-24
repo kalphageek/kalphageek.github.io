@@ -4,6 +4,7 @@ title: "Docker 미사용 Object 삭제"
 categories: docker
 tag: [prune, docker, delete, container, image, network, volume]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "Nifi 설치"
 categories: nifi
 tag: [nifi, install, docker]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

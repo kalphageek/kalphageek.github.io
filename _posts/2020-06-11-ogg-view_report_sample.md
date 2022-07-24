@@ -4,6 +4,7 @@ title: "OGG View Report 샘플"
 categories: ogg
 tag: [ogg, report]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "OGG S/W 설치"
 categories: ogg
 tag: [ogg, setup]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "Spark Example, Kafka에 쓰기"
 categories: spark
 tag: [spark, example, kafka, python, pyspark]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 
