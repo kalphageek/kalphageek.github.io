@@ -4,6 +4,7 @@ title: "Kafka - 이벤트 브로커와 메시지 브로커 차이"
 categories: kafka
 tag: [kafka, streams, springboot]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

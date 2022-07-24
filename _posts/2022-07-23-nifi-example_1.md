@@ -4,28 +4,29 @@ title: "Nifi Example #1"
 categories: nifi
 tag: [nifi, example]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 
 
 
-<img src="../images/2022-07-23-nifi-example_1/nifi-sample_1.png" alt="Process" style="zoom:150%;" />
+<img src="https://raw.githubusercontent.com/kalphageek/kalphageek.github.io/master/img/nifi-sample_1.png" style="zoom:150%;" />
 
 
 
 ## 데모 흐름
 
-오늘의 데모 사례는 IoT 애플리케이션입니다. 스마트 빌딩에는 사무실의 에어컨과 창문에 센서가 있습니다. AC가 켜져 있고 창이 열려 있으면 많은 에너지를 낭비하므로 이러한 상황을 기록하거나 경보를 생성하거나 AC를 자동으로 종료하려고 합니다. 이 경우 JSON 형식의 Apache Kafka Topic 2에서 센서 데이터를 수신합니다. 데이터를 CSV 형식의 HDFS와 Apache Cassandra에 저장할 것입니다.
+오늘의 데모 사례는 IoT 애플리케이션입니다. 스마트 빌딩에는 사무실의 에어컨과 창문에 센서가 있습니다. AC가 켜져 있고 창이 열려 있으면 많은 에너지를 낭비하므로 이러한 상황을 기록하거나 경보를 생성하거나 AC를 자동으로 종료하려고 합니다. 이 경우 JSON 형식의 Apache Kafka Topic 2에서 센서 데이터를 수신합니다. 데이터를 CSV 형식의 HDFS와 Apache Cassandra에 저장할 것입니다.ㅗ
 
 ### Step 1
 
 첫 번째 단계는 Kafka에서 데이터를 수신하는 것입니다. NiFi에는 Kafka Consumer 프로세서가 있으므로 정말 쉽습니다.
-프로세서에서 bold properties를 설정해야 하므로 일부 Kafka 브로커의 주소를 설정하고 보안이 설정된 경우 보안도 설정해야 하며 읽고 싶은 Topic도 지정해야 합니다. 우리의 경우 `mport.1`ac에 대한 Topic이고 `mport.2` 창문 sensor에 대한 것이므로 둘 다 추가했습니다.
+프로세서에서 bold properties를 설정해야 하므로 일부 Kafka 브로커의 주소를 설정하고 보안이 설정된 경우 보안도 설정해야 하며 읽고 싶은 Topic도 지정해야 합니다. 우리의 경우 `mport.1`가 AC에 대한 Topic이고, `mport.2` 창문 sensor에 대한 것이므로 둘 다 추가했습니다.
 
 ### Step 2
 
-창문과 ac 센서 형식이 다르기 때문에 데이터의 출처 Topic을 기반으로 라우팅을 설정했습니다. 이렇게 하면 두 센서의 데이터를 다르게 처리할 수 있습니다. 라우팅을 위해 RouteOnAttribute 프로세서를 사용했습니다.
-다행히 Kafka Consumer는 kafka.topic 속성을 설정하여 지금 사용할 수 있습니다. 작동하도록 하기 위해 Route to Property name strategy를 선택했습니다. 이 방법으로 이 프로세서에 대한 new output relationships을 만들 수 있습니다. 2개의 ac와 창을 만들었습니다. 프로세서에게 어떤 FlowFile이 어떤 방향으로 가야 하는지 알려주기 위해 NiFi expression language를 사용할 수 있습니다. 문서 검색에 대한 자세한 내용을 보려면 지금은 `kafka.topic`속성이 `mport.1`또는 와 같은지 확인하는 표현식을 만들었습니다 `mport.2`.
+창문과 AC 센서의 형식이 다르기 때문에 데이터의 출처 Topic을 기반으로 라우팅을 설정했습니다. 이렇게 하면 두 센서의 데이터를 다르게 처리할 수 있습니다. 라우팅을 위해 RouteOnAttribute 프로세서를 사용했습니다.
+다행히 Kafka Consumer는 kafka.topic 속성을 설정하여 지금 사용할 수 있습니다. 작동하도록 하기 위해 Route to Property name strategy를 선택했습니다. 이 방법으로 이 프로세서에 대한 new output relationships을 만들 수 있습니다. 2개의 AC와 창을 만들었습니다. 프로세서에게 어떤 FlowFile이 어떤 방향으로 가야 하는지 알려주기 위해 NiFi expression language를 사용할 수 있습니다. 문서 검색에 대한 자세한 내용을 보려면 지금은 `kafka.topic`속성이 `mport.1`또는 `mport.2`와 같은지 확인하는 표현식을 만들었습니다 .
 
 ### Step 3
 
@@ -56,6 +57,6 @@ NiFi에는 HDFS 프로세서가 탑재되어 있어 이 파일 시스템에 데�
 ### Step 5 / b
 
 마지막 단계는 매우 쉽습니다. 나는 이전에 이것이 작동하는 데 필요한 Cassandra 테이블을 생성했습니다. **PutCassandra** 프로세서가 Cassandra 클러스터를 찾을 수 있는 위치를 설정하고 키 공간을 설정하면 완료됩니다.
-이것은 ac 측의 흐름이었습니다. 창문 부분의 경우 이 부분을 복사하고 **EvaluateJSONPath** 및 **ReplaceText**에서 변경된 데이터 체계와 함께 재사용할 수 있습니다.
+이것은 AC 측의 흐름이었습니다. 창문 부분의 경우 이 부분을 복사하고 **EvaluateJSONPath** 및 **ReplaceText**에서 변경된 데이터 체계와 함께 재사용할 수 있습니다.
 
-ac 및 창문 분기가 있는 흐름의 최종 형태는 다음과 같습니다.
+AC 및 창문 분기가 있는 흐름의 최종 형태는 다음과 같습니다.

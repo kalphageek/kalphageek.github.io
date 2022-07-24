@@ -4,6 +4,7 @@ title: "Nifi Atributte"
 categories: nifi
 tag: [nifi, atributte, processor]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

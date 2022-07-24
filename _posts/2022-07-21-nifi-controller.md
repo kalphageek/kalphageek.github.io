@@ -4,6 +4,7 @@ title: "Nifi Controller"
 categories: nifi
 tag: [nifi, controller, processor]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "Nifi Cluster"
 categories: nifi
 tag: [nifi, text]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 

@@ -4,6 +4,7 @@ title: "Nifi Kafka"
 categories: nifi
 tag: [nifi, kafka, processor]
 toc: true
+toc_sticky: true
 #author_profile : false
 ---
 
