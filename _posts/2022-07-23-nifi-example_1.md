@@ -10,7 +10,7 @@ toc_sticky: true
 
 
 
-<img src="https://raw.githubusercontent.com/kalphageek/kalphageek.github.io/master/img/nifi-sample_1.png" style="zoom:150%;" />
+![](https://raw.githubusercontent.com/kalphageek/image_repo/main/img/nifi-sample_1.png?token=AHE3DGA3GORFWRNN7X5LCK3C3VI7K)
 
 
 

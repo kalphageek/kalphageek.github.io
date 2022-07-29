@@ -70,3 +70,23 @@ session.transfer(frowFile, REL_SUCCESS)
   - Content-typ : ${mime.type}
   
   
+
+## 4. ExecuteProcess
+
+> Java 프로세스 실행하고 결과 받아오기
+
+-  Ref : [https://m.blog.naver.com/oper13357799/220923197486](https://m.blog.naver.com/oper13357799/220923197486)
+
+- Property
+  - Command : java
+  - Command Argument : -jar HelloProcessor.jar
+  - Batch Duration : 10 sec  # 작업이 끝나지 않아도 10초마다 리터값을 받아온다
+  - Argumant Delimeter : ' ' # Space
+
+
+
+## 5. PutEmail
+
+> SMTP로 메일 보네기
+
+- Ref : [https://m.blog.naver.com/oper13357799/220927207038](https://m.blog.naver.com/oper13357799/220927207038)
