@@ -35,7 +35,7 @@ toc_sticky: true
 
 ### 2. UpdateRecord
 
-> FlowFile의 데이터를 수정하거나, 컬럼을 추가하는 등의 작업을 할 수 있다.  UpdateAttribute에서 생성된 table속성의 값을 FLOWFILE의 m이라는 컬럼으로 추가 한다
+> FlowFile의 데이터를 수정하거나, 컬럼을 추가하는 등의 작업을 할 수 있다.  
 
 * Ref : [https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s](https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s) (12:12)
 
