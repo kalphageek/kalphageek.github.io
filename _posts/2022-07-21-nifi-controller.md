@@ -23,6 +23,13 @@ toc_sticky: true
   
   
 ### 2. CSVReader
+> Header명을 컬럼명으로  CSV 파일을 읽는다.
+
+* Ref : [https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s](https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s) (16:45)
+* Property
+  - Schema Access Strategy : Use String Fields From Header
+  - Treat First Line as Header: true
+
 > 특정위치로 파일을 복사한다. GetFile에서 success인 파일을 저장하도록 구성할 수 있다
 
 * Ref : [https://www.youtube.com/watch?v=_SABMAiJ5Hg](https://www.youtube.com/watch?v=_SABMAiJ5Hg) (19:16)
@@ -32,8 +39,7 @@ toc_sticky: true
   - schema.name : ${schema.name}
   - schema.text : ${avro.schema}
   - Treat First Line as Header : true <- 첫번째 행 skip
-  
-  
+
 ### 3. AvroSchemaRegistry
 > CSV의 ,(콤마) 기반 컬럼에 스키마를 정의할 수 있다
 
