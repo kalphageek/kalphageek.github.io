@@ -35,7 +35,7 @@ toc_sticky: true
            sh "CI=false;${nodeHome}/bin/npm run build"
        }
        stage ('Docker Build') {
-           app = docker.build("kalphageek/${env.appName}")
+           app = docker.build("dockerhub/${env.appName}")
        }
        stage ('Docker Push') {
            docker.withRegistry('http://nexus-host:5001', 'dockerhub') { // (nexus repository, jenkins docker credential)

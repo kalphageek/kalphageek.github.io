@@ -30,7 +30,7 @@ toc_sticky: true
            sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -Dmaven.test.skip=true clean package"
        }
        stage('Docker Build') {
-           app = docker.build("kalphageek/${env.appName}")    
+           app = docker.build("creadential_name/${env.appName}")    
        }    
        stage('Docker Build') {
            docker.withRegistry('http://docker-hub:5001','creadential_name') {
