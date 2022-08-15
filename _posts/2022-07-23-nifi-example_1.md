@@ -14,7 +14,7 @@ toc_sticky: true
 
 csv파일 2개를 조인해서 새로운 결과셋을 만든다
 
- [csv파일조인.xml](../../../Downloads/csv파일조인.xml) 
+ [csv파일조인.xml](images/2022-07-23-nifi-example_1/csv파일조인.xml)
 
 Input 1 :
 
