@@ -64,7 +64,7 @@ toc_sticky: true
 
 ### 2. MergeContent
 
-> 2개의  FLOWFILE을 1기로 Merge한다.<br>
+> 2개의  FLOWFILE을 1개로 Merge한다.<br>
 > 이때, FOWFILE은 Avro포맷이어야하며, 각각의 FLOWFILE에는 UpdateAttribute를 이용해 ${fragment.index}와 ${fragment.count} 그리고 ${fragment.identifier} (임의의 값) 가 정의되어 있어야 한다.
 
 * Ref : [https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s](https://www.youtube.com/watch?v=0U_nlLoHw_k&t=1864s) (23:14)
