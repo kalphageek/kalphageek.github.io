@@ -1,8 +1,8 @@
 ---
 layout: single
 title: "Local Web server for Jekyll start"
-categories: test
-tag: [blog]
+categories: blog
+tag: [jekyll, server]
 #author_profile : false
 ---
 
