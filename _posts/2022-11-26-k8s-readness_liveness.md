@@ -1,12 +1,9 @@
 ---
-
-
-
 layout: single
 title: "K8S Readness, Liveness"
 categories: k8s
 tag: [readness, liveness, probe]
-#author_profile : false
+#author_profile: false
 
 ---
 
@@ -18,7 +15,7 @@ tag: [readness, liveness, probe]
 
 ## 1. Readness, Liveness가 필요한 시점
 
-1. Readness : Pod가 Failed된후 새로운 Pod가 시작될때 Container는 올라왔지만 Serviced가 Booting되기 직전의 순간
+1. Readness : Pod가 Failed된 후 새로운 Pod가 시작될때 Container는 올라왔지만 Serviced가 Booting되기 직전의 순간
 2. Liveness : Pod, Container는 정상이지만 Service가 비정상적인 동작(500 error 등)하는 경우
 
 ## 2. 설정 방법

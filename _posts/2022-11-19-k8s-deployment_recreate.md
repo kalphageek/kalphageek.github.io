@@ -3,7 +3,7 @@ layout: single
 title: "K8S Deployment - Recreate"
 categories: k8s
 tag: [deployment, controller, recreate]
-#author_profile : false
+#author_profile: false
 ---
 
 
@@ -62,7 +62,7 @@ spec:
     targetPort: 8080
 ```
 
-## 4. Sofeware Update
+## 4. Software Update
 
 > Deployment에 정의된 container image의 version을 update하면 바로 시작된다.
 
