@@ -2,7 +2,7 @@
 layout: single
 title: "K8S ReplicaSet"
 categories: k8s
-tag: [replicaset, controller]
+tag: [replicaset, controller, replicas, selector, template, example, delete]
 #author_profile : false
 ---
 
