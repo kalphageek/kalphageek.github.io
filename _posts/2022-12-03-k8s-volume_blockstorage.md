@@ -102,7 +102,7 @@ $ kubectl get -n longhorn-system volumeattachments.storage.k8s.io
 ### 5) Block Storage의 Dashboard 보기
 
 ```html
-http://localhost:30001
+http://192.168.56.30:30001
 ```
 
 
