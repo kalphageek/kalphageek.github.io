@@ -9,6 +9,8 @@ tag: [block, storage, pv, pvc]
 
 > 주로 SAN(Storage Area Network)를 기반으로 생성한다. 동시에 2개이상의 Node에서 연결을 허용하지 않고, 많은 데이터를 처리하는데 잇점이 있어서 DB를 구성하는데 사용된다.
 
+https://kubetm.github.io/k8s/07-intermediate-basic-resource/volume2/
+
 ## 1. Longhorn 설치
 
 ```bash
