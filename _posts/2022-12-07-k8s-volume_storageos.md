@@ -151,3 +151,41 @@ spec:
       storage: 2G
 ```
 
+
+
+## 3. Pod 생성
+
+### 1) Pod 생성
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-hostpath1
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: k8s-node1
+  terminationGracePeriodSeconds: 0
+  containers:
+  - name: container
+    image: kubetm/init
+    volumeMounts:
+    - name: hostpath
+      mountPath: /mount1
+  volumes:
+  - name: hostpath
+    persistentVolumeClaim:
+      claimName: pvc-hostpath1
+```
+
+### 2) Pod의 CLI
+
+```bash
+# 파일 생성
+$ cd /mount1
+touch file.txt
+```
+
+### 3) Dashboard 확인
+
+http://192.168.0.30:30705/ 
