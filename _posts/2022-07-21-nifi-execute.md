@@ -2,7 +2,7 @@
 layout: single
 title: "Nifi Command"
 categories: nifi
-tag: [nifi, command, processor]
+tag: [nifi, execute, script, processor]
 toc: true
 toc_sticky: true
 #author_profile : false
