@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Nifi Command"
+title: "Nifi Execute"
 categories: nifi
 tag: [nifi, execute, script, processor]
 toc: true
