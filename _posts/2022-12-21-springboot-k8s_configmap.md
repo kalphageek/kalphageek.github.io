@@ -11,6 +11,8 @@ tag: [k8s, configmap]
 
 ## 1. 설정방법
 
+https://github.com/whiteship/demo-springboot23/tree/springboot24
+
 * configmap.yaml
 
 > k8s-configmap이름으로 ConfigMap 생성.<br>그  ConfigMap의 파일이름은 application.properties 이고,  내용은 "my.message: hello kubernetes" .
