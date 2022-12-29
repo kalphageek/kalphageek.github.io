@@ -7,12 +7,11 @@ toc: true
 toc_sticky: true
 #author_profile : false
 
-
 ---
 
 
 
-### 1)  Log파일 자동 생성
+### 1) Log파일 자동 생성
 
 ```bash
 # log dir생성

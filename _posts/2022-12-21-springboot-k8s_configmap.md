@@ -159,7 +159,7 @@ public class HelloController {
 
 ```bash
 $ kubectl apply -f configmap.yaml
-$ kubectl apply -f apps.yaml
+$ kubectl apply -f container.yaml
 $ # app 실행
 # service 확인 (localhost:8080에 서비스 기동)
 $ kubectl get service

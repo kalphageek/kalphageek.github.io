@@ -7,14 +7,14 @@ toc: true
 toc_sticky: true
 #author_profile : false
 
-
 ---
 
 
 
-### 1-1) 동일 서버 : connect-properties 파일 추가
+### * 동일 서버에 추가  Connect (Worker) 실행
 
 ```bash
+# connect-distributed.properties 복제해서 Port 변경
 $ cd $CONFLUENT_HOME/etc/kafka
 $ cp connect-distributed.properties connect-distributed-8084.properties
 $ vi connect-distributed-8084.properties
@@ -22,9 +22,14 @@ $ vi connect-distributed-8084.properties
 # Port 변경
 listeners=HTTP://localhost:8084
 :wq
+
+# 추가된 Properties를 이용해 connect-distributed를 실행
+$ connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed-8084.properties
 ```
 
-### 1-2) 다른 서버 
+
+
+### * 다른 서버에 추가  Connect (Worker) 실행
 
 ```bash
 $ cd $CONFLUENT_HOME/etc/kafka
@@ -33,13 +38,7 @@ $ vi connect-distributed.properties
 # Kafka Broker 주소 변경
 bootstrap.servers=broker:9092
 :wq
+
+# 추가 서버에서 connect-distributed 실행
+$ connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed.properties
 ```
-
-
-
-### 2) 추가된 Properties를 이용해 connect-distributed 하나더 실행
-
-```bash
-$ connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed-8084.properties
-```
-
