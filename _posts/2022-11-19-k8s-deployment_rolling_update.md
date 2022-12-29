@@ -3,6 +3,8 @@ layout: single
 title: "K8S Deployment - Rolling Update"
 categories: k8s
 tag: [deployment, controller, rollingUpdate]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 

@@ -3,6 +3,8 @@ layout: single
 title: "Springboot On Cloud Platform"
 categories: springboot
 tag: [k8s, properties, cloud, platform, kubernetes]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 

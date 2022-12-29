@@ -3,6 +3,8 @@ layout: single
 title: "K8S Deployment - Recreate"
 categories: k8s
 tag: [deployment, controller, recreate]
+toc: true
+toc_sticky: true
 #author_profile: false
 ---
 

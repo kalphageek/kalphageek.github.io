@@ -3,6 +3,8 @@ layout: single
 title: "Maven Docker Build (IntelliJ)"
 categories: springboot
 tag: [docker, build, intellij, maven]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---

@@ -3,6 +3,8 @@ layout: single
 title: "K8S Node Scheduling"
 categories: k8s
 tag: [affinity, anti affinity, node, pod, matchExpressions, required, perpered, sample]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---

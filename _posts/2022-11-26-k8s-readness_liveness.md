@@ -3,6 +3,8 @@ layout: single
 title: "K8S Readness, Liveness"
 categories: k8s
 tag: [readness, liveness, probe]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---

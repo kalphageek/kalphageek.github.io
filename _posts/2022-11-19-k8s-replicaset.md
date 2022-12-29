@@ -3,6 +3,8 @@ layout: single
 title: "K8S ReplicaSet"
 categories: k8s
 tag: [replicaset, controller, replicas, selector, template, example, delete]
+toc: true
+toc_sticky: true
 #author_profile: false
 ---
 

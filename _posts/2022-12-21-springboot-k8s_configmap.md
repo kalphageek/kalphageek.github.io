@@ -3,6 +3,8 @@ layout: single
 title: "Springboot K8S configMap 연동"
 categories: springboot
 tag: [k8s, configmap]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---
@@ -13,7 +15,7 @@ tag: [k8s, configmap]
 
 https://github.com/whiteship/demo-springboot23/tree/springboot24
 
-* configmap.yaml
+* configmap yaml
 
 > k8s-configmap이름으로 ConfigMap 생성.<br>그  ConfigMap의 파일이름은 application.properties 이고,  내용은 "my.message: hello kubernetes" .
 
@@ -29,7 +31,7 @@ data:
 
 
 
-* apps.yaml
+* container yaml
 
 > Deployment와 Service 생성. Pod는 3개.<br>여기에 각각  사전 생성된 k8s-configmap라는 ConfigMap을 Volume으로 정의하고  /etc/config 경로에 mount한다
 
@@ -99,7 +101,7 @@ spring.config.import=optional:/etc/config/
 
 
 
-* MyProperties.java
+* Configuration Bean
 
 > applicaiton.properties를 읽어 들인다
 
@@ -122,7 +124,7 @@ public class MyProperties {
 
 
 
-* HelloController.java
+* Controller
 
 > MyProperties 정보를 사용한다
 

@@ -3,6 +3,8 @@ layout: single
 title: "Springboot K8S Readness/Liveness 연동"
 categories: springboot
 tag: [k8s, readness, liveness]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---

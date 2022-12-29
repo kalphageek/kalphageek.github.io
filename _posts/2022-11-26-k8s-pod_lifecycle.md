@@ -3,6 +3,8 @@ layout: single
 title: "K8S Pod Lifecycle"
 categories: k8s
 tag: [pod, phase, initContainers, imageID, CrashLoopBackOff, Conditions, Lifecycle]
+toc: true
+toc_sticky: true
 #author_profile: false
 ---
 

@@ -3,6 +3,8 @@ layout: single
 title: "K8S Volume - Block Storage"
 categories: k8s
 tag: [block, storage, pv, pvc]
+toc: true
+toc_sticky: true
 #author_profile: false
 
 ---
