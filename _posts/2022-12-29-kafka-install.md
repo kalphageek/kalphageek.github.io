@@ -37,8 +37,6 @@ export PATH=.:$CONFLUENT_HOME/bin:$PATHlogging
 $ . .bashrc
 ```
 
-logging
-
 ### 3) Alias 설정
 
 ```bash
@@ -59,7 +57,6 @@ alias connect-start='connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distr
 
 export log_suffix=`date +"%Y%m%d%H%M%S"`
 alias connect-start-log='connect-distributed $CONFLUENT_HOME/etc/kafka/connect-distributed.properties 2>&1 | tee -a ~/connect_console_log/connect_console_$log_suffix.log'
-
 ```
 
 
