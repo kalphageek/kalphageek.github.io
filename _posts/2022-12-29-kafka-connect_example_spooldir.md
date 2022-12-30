@@ -78,6 +78,6 @@ spooldir_test_source
 # connector 상태 보기
 $ curl -X GET http://localhost:8083/connectors/spooldir_test_source/status | jq "."
 # topic 데이터 보기
-$ consumer spooldir-test-source-topic --from-beginnig --property print.key=true
+$ consumer spooldir-test-source-topic --from-beginning --property print.key=true | jq "."
 ```
 
