@@ -2,7 +2,7 @@
 layout: single
 title: "Kafka Connect Cluster 구성"
 categories: kafka
-tag: [confluent, connect, cluster, 8083]
+tag: [confluent, connect, cluster, "8083"]
 toc: true
 toc_sticky: true
 #author_profile : false

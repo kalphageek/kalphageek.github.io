@@ -13,16 +13,14 @@ toc_sticky: true
 
 ### 1) Download
 
-[https://www.confluent.io/previous-versions/](https://www.confluent.io/previous-versions/)
-
-
+[Previous Connect Download](https://www.confluent.io/previous-versions/). 사전에 Java Runtime이 설치되어 있어야 한다.
 
 ### 2) Install
 
 ```bash
 $ cd download
 $ tar xvf confluent-community-7.1.4.tar
-$ sudo mv confluent-community-7.1.4 /usr/local/
+$ sudo mv confluent-7.1.4 /usr/local/
 $ chown confluent:confluent /usr/local/confluent-7.1.4
 
 # link 설정

@@ -13,7 +13,7 @@ toc_sticky: true
 
 ## 1. 설정 방법
 
-> K8S의 readness, liveness 적용은 Springboot의 Actuator 기능으로 구현가능하며, 아래와 같은 설정이 필요하다
+> K8S의 [readness, liveness]({{http://kalphageek.github.io}}{% link _posts/2022-11-26-k8s-readness_liveness.md %}) 적용은 Springboot의 Actuator 기능으로 구현가능하며, 아래와 같은 설정이 필요하다
 
 * Dependencies
 
