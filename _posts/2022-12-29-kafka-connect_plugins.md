@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Kafka Connect Plugin 설치"
+title: "Kafka Connect Plugins 설치"
 categories: kafka
 tag: [confluent, connect, connector, plugin, hub, source, sink, transform, converter]
 toc: true
@@ -33,4 +33,4 @@ toc_sticky: true
 
 ### 3) Plugins
 
-1. spooldir : 원천파일이 추가 변경 된 부분을 인식에서, 추출한다.
+1. spooldir : 원천파일이 추가 변경 된 부분을 인식에서, 자동으로 추출한다.

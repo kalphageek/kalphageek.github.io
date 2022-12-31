@@ -23,9 +23,9 @@ toc_sticky: true
 $ curl -X GET http://localhost:8083/connector-plugins | jq "."
 # connectors 보기
 $ curl -X GET http://localhost:8083/connectors
-spooldir_test_source
+spooldir-test-source
 # connector 상태 보기
-$ curl -X GET http://localhost:8083/connectors/spooldir_test_source/status | jq "."
+$ curl -X GET http://localhost:8083/connectors/spooldir-test-source/status | jq "."
 ```
 
 
@@ -53,6 +53,6 @@ $ curl -X POST -H "Content-Type: application/json" http://localhost:8083/connect
 $ curl -X GET http://localhost:8083/connectors
 spooldir_test_source
 # connector 삭제
-$ curl -X DELETE http://localhost:8083/connectors/spooldir_test_source
+$ curl -X DELETE http://localhost:8083/connectors/spooldir-test-source
 ```
 
