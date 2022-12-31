@@ -22,10 +22,10 @@ toc_sticky: true
 # plugins 보기
 $ curl -X GET http://localhost:8083/connector-plugins | jq "."
 # connectors 보기
-$ curl -X GET http://localhost:8083/connectors
+$ curl http://localhost:8083/connectors
 spooldir-test-source
 # connector 상태 보기
-$ curl -X GET http://localhost:8083/connectors/spooldir-test-source/status | jq "."
+$ curl http://localhost:8083/connectors/spooldir-test-source/status | jq "."
 ```
 
 
@@ -39,7 +39,9 @@ $ curl -X GET http://localhost:8083/connectors/spooldir-test-source/status | jq 
 $ cd ~/connect/configs
 $ ls
 spooldir_test_source.json
-$ curl -X POST -H "Content-Type: application/json" http://localhost:8083/connectors --data spooldir_test_source.json
+$ curl -X POST -H "Content-Type: application/json" http://localhost:8083/connectors --data @spooldir_test_source.json
+# 또는
+$ http POST http://localhost:8083/connectors @spooldir_test_source.json
 ```
 
 
@@ -54,5 +56,7 @@ $ curl -X GET http://localhost:8083/connectors
 spooldir_test_source
 # connector 삭제
 $ curl -X DELETE http://localhost:8083/connectors/spooldir-test-source
+# 또는
+$ http DELETE http://localhost:8083/connectors/spooldir-test-source
 ```
 

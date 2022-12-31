@@ -43,9 +43,9 @@ $ watch -n1 "http http://localhost:8080/actuator/health/liveness"
 
 ## 3. Httpie
 
-> Command Line Http 테스팅 툴
+> Command Line Http 테스팅 툴<br>curl | jq와 유사한 결과를 보여주지만, 보다 단순하고, 보기 좋은 결과를 만든다.
 
-* 설치
+* 설명
 
 https://httpie.io/cli
 
