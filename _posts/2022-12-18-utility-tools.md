@@ -79,7 +79,31 @@ $ echo "validate_password.policy=LOW" | sudo tee -a /etc/mysql/mysql.conf.d/mysq
 * 설치
 
 ```bash
-$ apt install jq
+$ suto apt-get install jq
+```
+
+* 사용법
+
+```bash
+$ curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq '.'
+# array 원소 접근
+$ curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq '.[1]'
+# filter 사용 - 연산자로 결과를 필터에 전달하여 처리할 수 있습니다. 아래는 가장 최근 커밋 정보에서 커밋 메시지, 커미터, 날자를 출력합니다.  
+$  curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' |jq '.[0] | {message: .commit.message, name: .commit.committer.name, date: .commit.author.date}' 
+```
+
+
+
+## 6. Kafkacat
+
+> Kafka Console Consumer/Producer/Topic을 대체하는 유틸리티
+
+[튜토리얼](https://stedolan.github.io/jq/tutorial/)
+
+* 설치
+
+```bash
+$ sudo apt-get install kafkacat
 ```
 
 * 사용법
