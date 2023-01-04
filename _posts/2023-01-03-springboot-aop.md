@@ -65,7 +65,7 @@ public class LogAspectTest() {
 
 
 
-### * Advice 적용 포맷
+### * Aspect 적용 템플릿
 
 ```java
 @Component
