@@ -67,7 +67,7 @@ public class EventControllerTest {
             .andExpect(jsonPath("free").value(false))
             .andExpect(jsonPath("content[0].objectName").exists())
             // header 테스트
-            .andExpect(header().exists(HttpHeaders.LOCATION));
+            .andExpect(header().exists(HttpHeaders.LOCATION))
             .andExpect(header().string("Content-Type", "application/hal+json;charset=UTF-8")) // 아래줄과 동일 의미
             .andExpect(header().string(HttpHeaders.CONTENT_TYPE, HttpHeaders.HAL_JSON_VALUES));
     }
