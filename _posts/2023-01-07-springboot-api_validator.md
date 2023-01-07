@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot API 입력값 검증 및 에러처리"
 categories: springboot
-tag: [api, test, validator, errors, webmvctest, isbadrequest, mockmvc, objectmapper, andexpect, requestbody]
+tag: [api, test, validator, errors, webmvctest, isbadrequest, mockmvc, objectmapper, andexpect, requestbody, jsoncomponent]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -33,12 +33,13 @@ public class EventContoller {
            (@NotNull, @NotEmpty, @Min, @Max 등 ...)
         */
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().build();
+            // Errors 객체는 Java빈 표준을 따르지 않기 때문에 ResponseEntity에 담으려면 ErrorsSerializer를 구현해줘야 한다.
+            return ResponseEntity.badRequest().body(errors);
         }
         // 별도로 생성한 Validator에서 로직 에러 검증
         eventValidator.validate(eventDto, errors);
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(errors);
         }
     }
 }    
@@ -46,14 +47,20 @@ public class EventContoller {
 
 * Validator Class
 
-> 별도로 빈으로 등록된 Vailidator에서 로직 에러를 체크해서, 에러가 있으면 rejectValue에 등록한다
+> 별도로 빈으로 등록된 Vailidator에서 로직 에러를 체크해서, 에러가 있으면 rejectValue에 등록한다 <br>에러는 Global 또는 Field에 설정될 수 있다. 
 
 ``` java
 @Component
 public class EventValidator {
     public void validate(EventDto eventDto, Errors errors) {
+        if (eventDto.getBasePrice() > eventDto.getMaxPrice()) {
+            // Global error에 설정
+            errors.reject("wrongPrices", "Value of prices is wrong");
+        }
+        
         LocalDateTime endEventDateTime = eventDto.getEndEventDateTime();
         if (endEventDateTime.isBefore(eventDto.getBeginEventDateTime) {
+            // Field error에 설정
             errors.rejectValue("endEventDateTime", "wroneValue");
         }
             
@@ -90,7 +97,61 @@ public class EventControllerTest {
                        .contentType(MediaType.APPLICATION_JSON)
                        .content(objectMapper.writeValueAsString(eventDto)))
             .andDo(print())
-            .andExpect(status().isBadRequest());
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$[0].objectName").exists())
+            // Global error로 등록된 경우 아래 jsonPath는 깨짐
+            .andExpect(jsonPath("$[0].field").exists())
+            .andExpect(jsonPath("$[0].code").exists())
+            .andExpect(jsonPath("$[0].defaultMessage").exists())
+            // Global error로 등록된 경우 아래 jsonPath는 깨짐
+            .andExpect(jsonPath("$[0].rejectdValue").exists());
+    }
+}
+```
+
+* ErrorsSerializer Class
+
+> Errors 객체는 Java빈 표준을 따르지 않기 때문에 ResponseEntity에 담으려면 ErrorsSerializer를 구현해줘야 한다.<br>Global / Field error를 모두 Json으로 매핑해줘야 한다<br>ObjectMapper에 ErrorsSerializer를 등록하기 위해서 @JsonComponent를 사용한다 -> Errors를 serialize할 때 ObjectMapper가 ErrorsSerializer를 사용한다
+
+```java
+// ObjectMapper에 ErrorsSerializer를 등록한다
+@JsonComponent
+public class ErrorsSerializer extends JsonSerializer<Errors> {
+
+    @Override
+    public void serialize(Errors errors, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeStartArray();
+        errors.getFieldErrors().stream().forEach(e -> {
+            try {
+                jsonGenerator.writeStartObject();
+                jsonGenerator.writeStringField("objectName", e.getObjectName());
+                jsonGenerator.writeStringField("code", e.getCode());
+                jsonGenerator.writeStringField("field", e.getField());
+                jsonGenerator.writeStringField("defaultMessage", e.getDefaultMessage());
+
+                Object rejectedValue = e.getRejectedValue();
+                if (rejectedValue != null) {
+                    jsonGenerator.writeStringField("rejectedValue", rejectedValue.toString());
+                } else {
+                    jsonGenerator.writeStringField("rejectedValue", "");
+                }
+                jsonGenerator.writeEndObject();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        errors.getGrobalErrors().stream().forEach(e -> {
+            try {
+                jsonGenerator.writeStartObject();
+                jsonGenerator.writeStringField("code", e.getCode());
+                jsonGenerator.writeStringField("objectName", e.getObjectName());
+                jsonGenerator.writeStringField("defaultMessage", e.getDefaultMessage());
+                jsonGenerator.writeEndObject();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        jsonGenerator.writeEndArray();
     }
 }
 ```

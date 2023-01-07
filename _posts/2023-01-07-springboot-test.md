@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot Test"
 categories: springboot
-tag: [webmvctest, test, mockmvc, webmvctest, objectmapper, andexpect, mockbean, perform, jsonpath, mockito]
+tag: [webmvctest, test, mockmvc, webmvctest, objectmapper, andexpect, mockbean, perform, jsonpath, mockito, displayname]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -45,6 +45,7 @@ public class EventControllerTest {
     EventRepository eventRepository;
 
     @Test
+    @DisplayName("Event Create 테스트")
     public void createTest() {
         // Given
         Event event = Event.build()
@@ -92,3 +93,9 @@ public class EventControllerTest {
 ### 4) @MockBean
 
 > Mockito를 이용해 mock(가상) 객체를 만들고 빈으로 등록해준다 <br>(주의) 기존빈을 테스트용 빈이 대체한다
+
+
+
+### 5) @DisplayName
+
+> Test Method의 설명을 Name으로 보여준다
