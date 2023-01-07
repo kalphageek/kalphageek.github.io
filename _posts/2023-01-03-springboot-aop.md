@@ -87,7 +87,7 @@ public class AOP {
 
 ## 2. Package Path와 Method Parameter의 패턴에 따른 AOP 적용
 
-### 1) AOP ClassStopWatchAOP
+### 1) AOP Class
 
 ```java
 @Component
