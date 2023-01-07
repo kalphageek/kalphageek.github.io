@@ -15,6 +15,8 @@ toc_sticky: true
 
 * Controller Class
 
+> 1.Method의 파라미터로 @Valid 어노테이션을 사용해서 RequestBody를 받으면, Errors 객체에 검출된 에러가 담겨서 함께 넘어온다 <br>2.사용자의 Validator 에서 Errors 객체에 등록된 rejectValue도 동일하게 hasErrors를 통해 확인할 수 있다.<br>어떤 경우라도 에러가 있으면 ResponseEntity.badRequest().build()를 리턴한다.
+
 ```java
 @RestController
 public class EventContoller {
@@ -26,7 +28,7 @@ public class EventContoller {
     }
     
 	@PostMapping
-    public ResponseEntity createEvent(//test Profiles 사용하기;@RequestBody @Valid EventDto eventDto, Errors errors) {
+    public ResponseEntity createEvent(@RequestBody @Valid EventDto eventDto, Errors errors) {
         /* RequestBody에 들어오는 값을 EventDto의 어노테이션에서 자동으로 에러를 검출
            (@NotNull, @NotEmpty, @Min, @Max 등 ...)
         */
@@ -44,6 +46,8 @@ public class EventContoller {
 
 * Validator Class
 
+> 별도로 빈으로 등록된 Vailidator에서 로직 에러를 체크해서, 에러가 있으면 rejectValue에 등록한다
+
 ``` java
 @Component
 public class EventValidator {
@@ -59,6 +63,8 @@ public class EventValidator {
 ```
 
 * Test Class
+
+> status().isBadRequest() 를 통해 Controller에서 리턴한 badRequest를 확인할 수 있다.
 
 ```java
 @ActiveProfiles("test")
