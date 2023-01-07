@@ -67,7 +67,7 @@ public class CashPerf implements Payment {
 }
 ```
 
-### 5) Clinet 코드
+### 5) Client 코드
 
 > Client에 기존 코드 대신 Proxy코드를 사용하도록 변경 한다. 기존 Business 코드 (Store)는 변경하지 않았다
 

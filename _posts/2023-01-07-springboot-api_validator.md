@@ -11,9 +11,9 @@ toc_sticky: true
 
 
 
-### 1. 입력값 에러 처리 및 테스트
+## 1. 입력값 에러 처리 및 테스트
 
-* Controller Class
+### 1) Controller Class
 
 > 1.Method의 파라미터로 @Valid 어노테이션을 사용해서 RequestBody를 받으면, Errors 객체에 검출된 에러가 담겨서 함께 넘어온다 <br>2.사용자의 Validator 에서 Errors 객체에 등록된 rejectValue도 동일하게 hasErrors를 통해 확인할 수 있다.<br>어떤 경우라도 에러가 있으면 ResponseEntity.badRequest().build()를 리턴한다.
 
@@ -45,7 +45,7 @@ public class EventContoller {
 }    
 ```
 
-* Validator Class
+### 2) Validator Class
 
 > 별도로 빈으로 등록된 Vailidator에서 로직 에러를 체크해서, 에러가 있으면 rejectValue에 등록한다 <br>에러는 Global 또는 Field에 설정될 수 있다. 
 
@@ -69,7 +69,7 @@ public class EventValidator {
 }
 ```
 
-* Test Class
+### 3) Test Class
 
 > status().isBadRequest() 를 통해 Controller에서 리턴한 badRequest를 확인할 수 있다.
 
@@ -109,7 +109,7 @@ public class EventControllerTest {
 }
 ```
 
-* ErrorsSerializer Class
+### 4) ErrorsSerializer Class
 
 > Errors 객체는 Java빈 표준을 따르지 않기 때문에 ResponseEntity에 담으려면 ErrorsSerializer를 구현해줘야 한다.<br>Global / Field error를 모두 Json으로 매핑해줘야 한다<br>ObjectMapper에 ErrorsSerializer를 등록하기 위해서 @JsonComponent를 사용한다 -> Errors를 serialize할 때 ObjectMapper가 ErrorsSerializer를 사용한다
 

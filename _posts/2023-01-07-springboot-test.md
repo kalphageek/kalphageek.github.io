@@ -13,9 +13,7 @@ toc_sticky: true
 
 ## 1. 슬라이스 테스트
 
-### 1) Create Test Example
-
-* application-test.propertiess
+### 1) application-test.propertiess
 
 ```properties
 spring.datasource.username=sa
@@ -27,7 +25,7 @@ spring.datasource.hikari.jdbc-url=jdbc:h2:mem:testdb
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
 ```
 
-* Test Class
+### 2) Test Class
 
 ```java
 //test Profiles 사용하기;
@@ -78,23 +76,19 @@ public class EventControllerTest {
 
 
 
-### 2) @WebMvcTest
+## 2. 어노테이션 & 빈
+
+### 1) @WebMvcTest
 
 > Web관련 빈만 등록하며, MockMvc 빈을 자동 등록해준다.
 
-
-
-### 3) MockMvc
+### 2) MockMvc
 
 > MVC 테스트의 핵심클래스. 웹서버를 구동하지 않고 MVC (Dispatch Servlet) 요청을 처리하는 과정을 확인할 수 있도록 해준다<br>@WebMvcTest (Web테스트), @SpringBootTest (Application테스트)
 
-
-
-### 4) @MockBean
+### 3) @MockBean
 
 > Mockito를 이용해 mock(가상) 객체를 만들고 빈으로 등록해준다 <br>(주의) 기존빈을 테스트용 빈이 대체한다
-
-
 
 ### 5) @DisplayName
 
