@@ -11,6 +11,8 @@ toc_sticky: true
 
 
 
+## 1. Proxy 패턴
+
 > payment.pay가 여러곳서 사용되는 경우 기존 코드의 변경없이 pay의 내용을 변경하거나 추가 코드를 삽입할 수 있다.
 
 ### 1) Proxy Interface
