@@ -15,7 +15,7 @@ toc_sticky: true
 
 ### 1) Controller Class
 
-> 1.Method의 파라미터로 @Valid 어노테이션을 사용해서 RequestBody를 받으면, Errors 객체에 검출된 에러가 담겨서 함께 넘어온다 <br>2.사용자의 Validator 에서 Errors 객체에 등록된 rejectValue도 동일하게 hasErrors를 통해 확인할 수 있다.<br>어떤 경우라도 에러가 있으면 ResponseEntity.badRequest().build()를 리턴한다.
+> 1.Method의 파라미터로 @Valid 어노테이션을 사용해서 RequestBody를 받으면, Errors 객체에 검출된 에러가 담겨서 함께 넘어온다 <br>2.사용자의 Validator 에서 Errors 객체에 등록된 rejectValue도 동일하게 hasErrors를 통해 확인할 수 있다.<br>어떤 경우라도 에러가 있으면 ResponseEntity.badRequest()를 리턴한다.
 
 ```java
 @RestController
