@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot Custorm Exception"
 categories: springboot
-tag: [advice, datahubexception, restcontrolleradvice, exceptionhandler]
+tag: [advice, datahubexception, restcontrolleradvice, exceptionhandler, constants]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -11,7 +11,7 @@ toc_sticky: true
 
 
 
-## 1. Exception Type
+## 1. Exception Type 정의
 
 ```java
 package common;
@@ -80,7 +80,7 @@ public class DatahubException extends Exception {
 
 
 
-## 3. Exception Handler
+## 3. Exception Handler 정의
 
 ```java
 package common.exception;
