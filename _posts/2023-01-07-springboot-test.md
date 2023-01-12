@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot Test"
 categories: springboot
-tag: [webmvctest, test, mockmvc, webmvctest, objectmapper, andexpect, mockbean, perform, jsonpath, mockito, displayname]
+tag: [webmvctest, test, mockmvc, webmvctest, objectmapper, andexpect, mockbean, perform, jsonpath, mockito, displayname, autoconfiguremockmvc]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -28,9 +28,9 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
 ### 2) Test Class
 
 ```java
-//test Profiles 사용하기;
 @ActiveProfiles("test")
 @WebMvcTest
+//@AutoConfigureMockMvc
 public class EventControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -81,6 +81,10 @@ public class EventControllerTest {
 ### 1) @WebMvcTest
 
 > Web관련 빈만 등록하며, MockMvc 빈을 자동 등록해준다.
+
+### 2) @AutoConfigureMockMvc
+
+> @SpringBootTest설정으로 모킹한 객체를 의존성 주입받으려면 **@AutoCOnfigureMockMvc**를 클래스 위에 추가 해야한다.
 
 ### 2) MockMvc
 

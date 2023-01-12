@@ -45,14 +45,14 @@ public class Constants {
 ```java
 package common.exception;
 
-public class DatahubException extends Exception {
+public class EventException extends Exception {
 
     private static final long serialVersionUID = 4663380430591151694L;
 
     private Constants.ExceptionClass exceptionClass;
     private HttpStatus httpStatus;
 
-    public DatahubException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus,
+    public EventException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus,
         String message) {
         super(exceptionClass.toString() + message);
         this.exceptionClass = exceptionClass;
@@ -86,14 +86,13 @@ public class DatahubException extends Exception {
 package common.exception;
 
 @RestControllerAdvice
-public class DatahubExceptionHandler {
+public class EventExceptionHandler {
 
-    private final Logger log = LoggerFactory.getLogger(DatahubExceptionHandler.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(value = Exception.class)
-    public ResponsPeEntity<Map<String, String>> ExceptionHandler(Exception e) {
+    public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e) {
         HttpHeaders responseHeaders = new HttpHeaders();
-        //responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         log.error("Advice 내 ExceptionHandler 호출, {}, {}", e.getCause(), e.getMessage());
@@ -106,8 +105,8 @@ public class DatahubExceptionHandler {
         return new ResponseEntity<>(map, responseHeaders, httpStatus);
     }
 
-    @ExceptionHandler(value = DatahubException.class)
-    public ResponseEntity<Map<String, String>> ExceptionHandler(DatahubException e) {
+    @ExceptionHandler(value = EventException.class)
+    public ResponseEntity<Map<String, String>> ExceptionHandler(EventException e) {
         HttpHeaders responseHeaders = new HttpHeaders();
 
         Map<String, String> map = new HashMap<>();
@@ -129,7 +128,7 @@ public class DatahubExceptionHandler {
 ```java
 @Test
 public void exceptionTest() throws DatahubException {
-    throw new DatahubException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
+    throw new EventException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
 }
 ```
 

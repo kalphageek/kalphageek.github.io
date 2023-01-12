@@ -53,13 +53,12 @@ public class HelloController {
 
 ```java
 @RestControllerAdvice
-public class ExceptionHandler {
+public class EventExceptionHandler {
     private final Logger log = LoggerFactory.getLogger(ExceptionHandler.class);
     
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e) {
         HttpHeaders responseHeaders = new HttpHeaders();
-        //responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         log.info(e.getMessage());
