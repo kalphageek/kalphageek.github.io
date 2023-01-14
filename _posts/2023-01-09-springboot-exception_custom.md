@@ -17,15 +17,19 @@ toc_sticky: true
 package common;
 
 public class Constants {
+    public static String RESPONSE_MESSAGE = "responseMessage";
+    public static String ERROR_MESSAGE = "errorMessage";
+    public static String ERROR_CODE = "errorCode";
+    public static String ERROR_TYPE = "errorType";
+
     public enum ExceptionClass {
-        PRODUCT("Product"), SIGN("Sign");
-        
+        HANDLED("Handled"), UNHANDLED("Unhandled");
+
         private String exceptionClass;
 
         ExceptionClass(String exceptionClass) {
             this.exceptionClass = exceptionClass;
         }
-
         public String getExceptionClass() {
             return exceptionClass;
         }
@@ -45,15 +49,15 @@ public class Constants {
 ```java
 package common.exception;
 
-public class EventException extends Exception {
+public class CMDException extends Exception {
 
     private static final long serialVersionUID = 4663380430591151694L;
 
     private Constants.ExceptionClass exceptionClass;
     private HttpStatus httpStatus;
 
-    public EventException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus,
-        String message) {
+    public CMDException(Constants.ExceptionClass exceptionClass, HttpStatus httpStatus,
+                        String message) {
         super(exceptionClass.toString() + message);
         this.exceptionClass = exceptionClass;
         this.httpStatus = httpStatus;
@@ -86,39 +90,37 @@ public class EventException extends Exception {
 package common.exception;
 
 @RestControllerAdvice
-public class EventExceptionHandler {
-
+public class GlobalExceptionHandler {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Map<String, String>> ExceptionHandler(Exception e) {
-        HttpHeaders responseHeaders = new HttpHeaders();
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Map(String,String)> unhandledException(Exception e) {
+        HttpHeaders httpHeaders = new HttpHeaders();
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
-        log.error("Advice 내 ExceptionHandler 호출, {}, {}", e.getCause(), e.getMessage());
-
         Map<String, String> map = new HashMap<>();
-        map.put("error type", httpStatus.getReasonPhrase());
-        map.put("code", "400");
-        map.put("message", "에러 발생");
+        map.put(Constants.ERROR_TYPE, httpStatus.getReasonPhrase());
+        map.put(Constants.ERROR_CODE, "400");
+        map.put(Constants.ERROR_MESSAGE, e.getMessage());
+        log.error("Unhandled Exception 발생 : {}, {}", httpStatus.getReasonPhrase(), e.getMessage());
 
-        return new ResponseEntity<>(map, responseHeaders, httpStatus);
+        return new ResponseEntity<>(map, httpHeaders, httpStatus);
     }
 
-    @ExceptionHandler(value = EventException.class)
-    public ResponseEntity<Map<String, String>> ExceptionHandler(EventException e) {
-        HttpHeaders responseHeaders = new HttpHeaders();
+    @ExceptionHandler(CMDException.class)
+    protected ResponseEntity<Map(String,String)> customException(CMDException e) {
+        HttpHeaders httpHeaders = new HttpHeaders();
 
         Map<String, String> map = new HashMap<>();
-        map.put("error type", e.getHttpStatusType());
-        map.put("error code",
-            Integer.toString(e.getHttpStatusCode())); // Map<String, Object>로 설정하면 toString 불필요
-        map.put("message", e.getMessage());
+        map.put(Constants.ERROR_TYPE, e.getHttpStatusType());
+        map.put(Constants.ERROR_CODE, Integer.toString(e.getHttpStatusCode()));
+        map.put(Constants.ERROR_MESSAGE, e.getMessage());
+        log.error("Handled Exception 발생 : {}, {}", e.getHttpStatusType(), e.getMessage());
 
-        return new ResponseEntity<>(map, responseHeaders, e.getHttpStatus());
+        return new ResponseEntity<>(map, httpHeaders, e.getHttpStatus());
     }
-
 }
+
 ```
 
 
@@ -127,8 +129,8 @@ public class EventExceptionHandler {
 
 ```java
 @Test
-public void exceptionTest() throws DatahubException {
-    throw new EventException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
+public void exceptionTest() throws CMDException {
+    throw new CMDException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
 }
 ```
 
