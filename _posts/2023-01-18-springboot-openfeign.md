@@ -41,32 +41,47 @@ toc_sticky: true
 
 #### 2. Enable 설정
 
+> App 전체에 영향을 미치지 않도록 별도의 Configuration 클래스에 적용 가능<br>더불어 ErrorDecode 를 빈으로 등록한다
+
 ```java
-@EnableFeignClients
-public class UserServiceApplication {    
+@Configiration
+@EnableFeignClients(basePackages = "me.kalpha.userservice.feign")
+public class FeignConfiguration {
+    @Bean
+    publi FeignErrorDecode decoder() {
+        return new FeignErrorDecode();
+    }
 }
 ```
 
-#### 3. Interface 선언
+
+
+#### 3. FeignClient 선언
 
 > @FeignClient의 속성 중 name은 app name을 입력한다. uri로 ip를 설정할 수도 있다.
 
 ```java
-@FeignClient(name = "order-service", uri = "http://10.20.30.41:8080")
+@FeignClient(name = "order-service", uri = "http://10.20.30.41:8080", configuration = {FeignConfiguration.class})
 public interface OrderServiceClient {
     @GetMapping("/order-service/{userId}/orders")
-    List<ResponseOrder> getOrders(@PathVariable String userId);
+    List<ResponseOrder> getOrders(@PathVariable("userId") String userId);
 }
 ```
 
-#### 4. Method 호출
+#### 4. FeignClient 호출
 
 ```java
-@Autowired
-private OrderServiceClient orderServiceClient;
-...
-/* ErrorDecorder 이용*/
-List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
+public class UserServiceImpl {
+    @Autowired
+    private OrderServiceClient orderServiceClient;
+
+    ...
+	/* ErrorDecorder 이용*/
+    public List<ResponseOrder> getOrders(userId) {}
+        List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
+		return orderList;
+	}
+}
 ```
 
 #### 5. Logging
@@ -78,13 +93,15 @@ List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
 # 3. Interface가 선언된 위치
 logging:
     level:
-        me.kalpha.userservice.client: DEBUG
+        me.kalpha.userservice.feign.client: DEBUG
 ```
 
 ```java
-public class UserServiceApplication {
+public class FeignConfiguration {
+    ...
+        
     @Bean
-	public Logger.Level getFeignLoggerrLevel() {
+	public Logger.Level getFeignLoggerLevel() {
 		return Logger.Level.FULL;
 }
 ```
@@ -114,4 +131,72 @@ public class FeignErrorDecoder implements ErrorDecoder {
     }
 }
 ```
+
+#### 기타 1. Url을 동적으로 받도록 수정하기
+
+> Url을 동적으로 받아서 호출시점에 할당할 수 있다 (어노테이션의 url파라미터는 의미 없음)
+
+```java
+// FeignClient 선언
+@FeignClient(name = "order-service", url = "dynamic-url", configuration = {FeignConfiguration.class})
+public interface OrderServiceClient {
+    @GetMapping("/order-service/{userId}/orders")
+    List<ResponseOrder> getOrders(URI uri, @PathVariable("userId") String userId);
+}
+
+// FeignClient 호출
+public class UserServiceImpl {}
+    @Autowired
+    private OrderServiceClient orderServiceClient;
+
+    ...
+    public List<ResponseOrder> getOrders(baseUrl, userId) {}
+        URI uri = new URI(("http://"+baseUrl+":8080"));
+        List<ResponseOrder> orderList=orderServiceClient.getOrders(uri, userId);
+		return orderList;
+	}
+}
+```
+
+#### 기타 2. Sprinboot 2.2 / 2.3에서 사용
+
+```xml
+	<properties>
+        <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.9.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-cirbuitbreaker-resilience4j</artifactId>
+            <version>1.0.6.RELEASE</version>
+		</dependency>
+    </dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+```
+
+#### 기타 2. (부록) Spring Cloud 와 Boot 의 Version 궁합
+
+> 아래 링크의 하단에 버전의 궁합을 표시하고 있습니다.
+
+| Release Train        | Boot Version                          |
+| -------------------- | ------------------------------------- |
+| 2021.0.x aka Jubilee | 2.6.x, 2.7.x (Starting with 2021.0.3) |
+| 2020.0.x aka Ilford  | 2.4.x, 2.5.x (Starting with 2020.0.3) |
+| Hoxton               | 2.2.x, 2.3.x (Starting with SR5)      |
 

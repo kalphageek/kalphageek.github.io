@@ -130,7 +130,7 @@ public class GlobalExceptionHandler {
 ```java
 @Test
 public void exceptionTest() throws CMDException {
-    throw new CMDException(ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
+    throw new CMDException(ExceptionClass.HANDLED, HttpStatus.BAD_REQUEST, "의도한 에러가 발생했습니다.");
 }
 ```
 
