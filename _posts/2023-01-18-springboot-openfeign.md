@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot Cloud Openfeign"
 categories: springboot
-tag: [feign, cloud, feignerrordecoder]
+tag: [feign, cloud, feignerrordecode, uri, configuration, exception, hoxton]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -17,31 +17,31 @@ toc_sticky: true
 
 ```xml
 # pom.xml
-	<properties>
-		<spring-cloud.version>2020.0.1</spring-cloud.version>
-	</properties>
-	<properties>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <properties>
+        <spring-cloud.version>2020.0.1</spring-cloud.version>
+    </properties>
+    <properties>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 ```
 
-#### (부록) Spring Cloud 와 Boot 의 Version 궁합
+#### (참조) Spring Cloud 와 Boot 의 Version 호환
 
-> 아래 링크의 하단에 버전의 궁합을 표시하고 있습니다.
+> 아래 링크의 하단에 버전의 호환여부를 확인해야 한다.
 
 | Release Train        | Boot Version                          |
 | -------------------- | ------------------------------------- |
@@ -66,7 +66,7 @@ public class FeignConfiguration {
 
 
 
-#### 3. FeignClient 선언
+#### 3. Remote API Interface 선언
 
 > @FeignClient의 속성 중 name은 app name을 입력한다. url로 host를 설정할 수도 있다.
 
@@ -78,7 +78,7 @@ public interface OrderServiceClient {
 }
 ```
 
-#### 4. FeignClient 호출
+#### 4. Remote API 호출
 
 ```java
 public class UserServiceImpl {
@@ -86,11 +86,11 @@ public class UserServiceImpl {
     private OrderServiceClient orderServiceClient;
 
     ...
-	/* ErrorDecorder 이용*/
+    /* ErrorDecorder 이용*/
     public List<ResponseOrder> getOrders(userId) {}
         List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
-		return orderList;
-	}
+        return orderList;
+    }
 }
 ```
 
@@ -111,15 +111,15 @@ public class FeignConfiguration {
     ...
         
     @Bean
-	public Logger.Level getFeignLoggerLevel() {
-		return Logger.Level.FULL;
+    public Logger.Level getFeignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }
 ```
 
 #### 6. Exception 처리
 
-> FeginException을 직접사용해서 try catch하는 것이 아니라, FeignErrorDecorder를 활용해서 에러처리.
+> FeginException을 직접사    용해서 try catch하는 것이 아니라, FeignErrorDecorder를 활용해서 에러처리.
 
 ```java
 @Component
@@ -140,7 +140,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
         }
         return null;
     }
-}
+}    
 ```
 
 #### 기타 1. Url을 동적으로 받도록 수정하기
@@ -164,40 +164,40 @@ public class UserServiceImpl {}
     public List<ResponseOrder> getOrders(baseUrl, userId) {}
         URI uri = new URI(("http://"+baseUrl+":8080"));
         List<ResponseOrder> orderList=orderServiceClient.getOrders(uri, userId);
-		return orderList;
-	}
+        return orderList;
+    }
 }
 ```
 
 #### 기타 2. Sprinboot 2.2 / 2.3에서 사용
 
 ```xml
-	<properties>
+    <properties>
         <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>2.2.9.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-cirbuitbreaker-resilience4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-cirbuitbreaker-resilience4j</artifactId>
             <version>1.0.6.RELEASE</version>
-		</dependency>
+        </dependency>
     </dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 ```
 
