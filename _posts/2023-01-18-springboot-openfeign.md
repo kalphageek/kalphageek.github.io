@@ -39,6 +39,16 @@ toc_sticky: true
 	</dependencyManagement>
 ```
 
+#### (부록) Spring Cloud 와 Boot 의 Version 궁합
+
+> 아래 링크의 하단에 버전의 궁합을 표시하고 있습니다.
+
+| Release Train        | Boot Version                          |
+| -------------------- | ------------------------------------- |
+| 2021.0.x aka Jubilee | 2.6.x, 2.7.x (Starting with 2021.0.3) |
+| 2020.0.x aka Ilford  | 2.4.x, 2.5.x (Starting with 2020.0.3) |
+| Hoxton               | 2.2.x, 2.3.x (Starting with SR5)      |
+
 #### 2. Enable 설정
 
 > App 전체에 영향을 미치지 않도록 별도의 Configuration 클래스에 적용 가능<br>더불어 ErrorDecode 를 빈으로 등록한다
@@ -58,10 +68,10 @@ public class FeignConfiguration {
 
 #### 3. FeignClient 선언
 
-> @FeignClient의 속성 중 name은 app name을 입력한다. uri로 ip를 설정할 수도 있다.
+> @FeignClient의 속성 중 name은 app name을 입력한다. url로 host를 설정할 수도 있다.
 
 ```java
-@FeignClient(name = "order-service", uri = "http://10.20.30.41:8080", configuration = {FeignConfiguration.class})
+@FeignClient(name = "order-service", url = "http://10.20.30.41:8080", configuration = {FeignConfiguration.class})
 public interface OrderServiceClient {
     @GetMapping("/order-service/{userId}/orders")
     List<ResponseOrder> getOrders(@PathVariable("userId") String userId);
@@ -190,14 +200,4 @@ public class UserServiceImpl {}
 		</dependencies>
 	</dependencyManagement>
 ```
-
-#### 기타 2. (부록) Spring Cloud 와 Boot 의 Version 궁합
-
-> 아래 링크의 하단에 버전의 궁합을 표시하고 있습니다.
-
-| Release Train        | Boot Version                          |
-| -------------------- | ------------------------------------- |
-| 2021.0.x aka Jubilee | 2.6.x, 2.7.x (Starting with 2021.0.3) |
-| 2020.0.x aka Ilford  | 2.4.x, 2.5.x (Starting with 2020.0.3) |
-| Hoxton               | 2.2.x, 2.3.x (Starting with SR5)      |
 
