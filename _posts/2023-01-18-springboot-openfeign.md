@@ -48,7 +48,7 @@ toc_sticky: true
 @EnableFeignClients(basePackages = "me.kalpha.userservice.feign")
 public class FeignConfiguration {
     @Bean
-    publi FeignErrorDecode decoder() {
+    public FeignErrorDecode decoder() {
         return new FeignErrorDecode();
     }
 }
@@ -103,6 +103,7 @@ public class FeignConfiguration {
     @Bean
 	public Logger.Level getFeignLoggerLevel() {
 		return Logger.Level.FULL;
+    }
 }
 ```
 
