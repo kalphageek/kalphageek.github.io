@@ -26,7 +26,7 @@ toc_sticky: true
 
 2. encrypt key 설정
 
-- bootstrap.ymlnative-file-repo > user-service.yml
+- bootstrap.yml
 
 ```yaml
 encrypt:
@@ -64,13 +64,7 @@ spring:
 	security:
 		user:
 			name: admin
-			password: '{cipher}38e40f741d0d517c386a29bcd575bac6394a2a4eb4983b9292c770b147a30e92'
-```
-
-6. Config server의 profile 확인
-
-```
-http://localhost:8088/user-service/default
+			password: '{cipher}01dc766ab8cdb62c2dc1b30853609965a522962f1fe10d6ad2ad8195fca2cffe'
 ```
 
 
@@ -132,7 +126,8 @@ encrypt:
   password: test1234
 ```
 
-1. Encrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
-2. Decrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
-3. 활용 -> ## 대칭키를 이용한 암호화와 동일
-4. 확인 -> ## 대칭키를 이용한 암호화와 동일
+4. Encrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
+
+5. Decrypt API 호출 -> ## 대칭키를 이용한 암호화와 동일
+
+6. 활용 -> ## 대칭키를 이용한 암호화와 동일
