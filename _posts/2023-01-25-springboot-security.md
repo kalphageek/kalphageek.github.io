@@ -39,7 +39,7 @@ toc_sticky: true
 
 > 기본제공된 UserDetailsServiceAutoConfiguration클래스가 InMemoryUserDetailsManager 메소드를 이용해 제공하는 기능이다.<br>properties를 설정하지 않으면 "user"라는 이름의 User를 자동으로 제공한다. (패스워드는 Console에서 확인 할 수 있다)
 
-* Application.yml
+* application.yml
 
 ```yaml
 spring:
@@ -74,7 +74,8 @@ public void my_without_user() throws Exception {
 
 ```java
 @Configuration
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
