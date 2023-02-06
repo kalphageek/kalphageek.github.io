@@ -15,13 +15,39 @@ toc_sticky: true
 
 > Bootstrap이 자동으로 '{cipher}'로 시작하는 yaml파일의 text를 decrypt 한다. 이 때 bootstrap.yml에 있는 key를 사용한다
 
-1. Dependency 추가
+1. pom.xml 설정
 
 ```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-bootstrap</artifactId>
-</dependency>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring-cloud.version>2020.0.1</spring-cloud.version>
+	</properties>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 ```
 
 2. encrypt key 설정
@@ -73,14 +99,7 @@ spring:
 
 > JDK의 keytool을 활용해서 private key와 public key 생성한다. 생성된 private key를 이용해 encrypt 하면 public key를 이용해 decrypt한다 (또는 그 반대)
 
-1. Dependency 추가
-
-```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-bootstrap</artifactId>
-</dependency>
-```
+1. pom.xml 설정 -> ## 대칭키를 이용한 암호화와 동일
 
 2. 비대칭키 생성
 

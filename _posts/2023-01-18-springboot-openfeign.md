@@ -11,21 +11,30 @@ toc_sticky: true
 
 
 
-#### 1. Dependency 추가
+#### 1. pom.xml 설정
 
 > Springboot Version에 따라 spring-cloud.version을 맞춰야 한다.
 
 ```xml
-# pom.xml
-    <properties>
-        <spring-cloud.version>2020.0.1</spring-cloud.version>
-    </properties>
-    <properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring-cloud.version>2020.0.1</spring-cloud.version>
+	</properties>
+
+    <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
