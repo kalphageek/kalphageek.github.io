@@ -2,7 +2,7 @@
 layout: single
 title: "Springboot Cloud Openfeign"
 categories: springboot
-tag: [feign, cloud, feignerrordecode, uri, configuration, exception, hoxton]
+tag: [feign, cloud, feignerrordecode, uri, configuration, exception, hoxton, dynamic-url]
 toc: true
 toc_sticky: true
 #author_profile: false
@@ -10,6 +10,8 @@ toc_sticky: true
 ---
 
 
+
+> Openfeign의 ErrorDecoder를 이용해서 Exception을 처리한다.
 
 #### 1. pom.xml 설정
 
@@ -60,20 +62,15 @@ toc_sticky: true
 
 #### 2. Enable 설정
 
-> App 전체에 영향을 미치지 않도록 별도의 Configuration 클래스에 적용 가능<br>더불어 ErrorDecode 를 빈으로 등록한다
+> App 전체에 영향을 미치지 않도록 별도의 Configuration 클래스에 적용
 
 ```java
 @Configiration
 @EnableFeignClients(basePackages = "me.kalpha.userservice.feign")
 public class FeignConfiguration {
-    @Bean
-    public FeignErrorDecode decoder() {
-        return new FeignErrorDecode();
-    }
+    ...
 }
 ```
-
-
 
 #### 3. Remote API Interface 선언
 
@@ -90,13 +87,12 @@ public interface OrderServiceClient {
 #### 4. Remote API 호출
 
 ```java
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
     @Autowired
     private OrderServiceClient orderServiceClient;
 
-    ...
     /* ErrorDecorder 이용*/
-    public List<ResponseOrder> getOrders(userId) {}
+    public List<ResponseOrder> getOrders(userId) {
         List<ResponseOrder> orderList=orderServiceClient.getOrders(userId);
         return orderList;
     }
@@ -106,14 +102,6 @@ public class UserServiceImpl {
 #### 5. Logging
 
 > 설정하는것 만으로 충분한 log를 확인할 수 있다.
-
-```yaml
-# application.yml
-# 3. Interface가 선언된 위치
-logging:
-    level:
-        me.kalpha.userservice.feign.client: DEBUG
-```
 
 ```java
 public class FeignConfiguration {
@@ -152,6 +140,17 @@ public class FeignErrorDecoder implements ErrorDecoder {
 }    
 ```
 
+```java
+public class FeignConfiguration {
+    ...
+        
+    @Bean
+    public FeignErrorDecode getFeignErrorDecode() {
+        return new FeignErrorDecode();
+    }
+}
+```
+
 #### 기타 1. Url을 동적으로 받도록 수정하기
 
 > Url을 동적으로 받아서 호출시점에 할당할 수 있다 (어노테이션의 url파라미터는 의미 없음)
@@ -179,6 +178,8 @@ public class UserServiceImpl {}
 ```
 
 #### 기타 2. Sprinboot 2.2 / 2.3에서 사용
+
+> spring.boot과 spring-cloud, openfeign의 version을 맞춰야 한다.
 
 ```xml
     <properties>
