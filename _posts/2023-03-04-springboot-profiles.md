@@ -54,7 +54,7 @@ logging.level:
 # H2 설정 예제
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/workspace/h2/data
+    url: jdbc:h2:tcp://localhost/~/workspace/h2/data/querydsl
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -69,6 +69,18 @@ spring:
 
 logging.level:
   org.hibernate.SQL: trace
+```
+
+* Local에 H2 운영DB 설정
+  * H2 Download (https://h2database.com/html/main.html)
+  * 파일생성 및 H2 실행
+
+```bash
+$ cd ~/workspace/h2/
+$ mkdir data
+$ touch data/querydsl.mv.db
+$ chmod 755 bin/h2.sh
+$ bin/h2.sh # Web Browser 자동실행
 ```
 
 * 적용 클래스
@@ -86,7 +98,7 @@ public class InitMember {
 
 ### 3. Test Profile 설정
 
-> Junit 테스트를 위한 설정
+> Junit 테스트를 위해 사용한다
 
 * test/resources/application-test.yml
 
@@ -117,7 +129,7 @@ logging:
 
 * 테스트 클래스
 
-> Test Class에 @ActiveProfiles("test") 추가
+> Test Class에 @ActiveProfiles("test") 추가한다
 
 ```java
 @ActiveProfiles("test")
