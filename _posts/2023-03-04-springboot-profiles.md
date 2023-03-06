@@ -15,23 +15,33 @@ toc_sticky: true
 
 > default Profiles가 적용 된다.
 
+* H2 운영DB 설정
+  * H2 Download (https://h2database.com/html/main.html)
+  * 파일생성 및 H2 실행
+
+```bash
+$ cd ~/workspace/h2/
+$ mkdir data
+$ touch data/querydsl.mv.db
+$ chmod 755 bin/h2.sh
+$ bin/h2.sh # Web Browser 자동실행
+```
+
 * main/resources/application.yml
 
 ```json
-# H2 설정 예제
+server:
+  port: 8080
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/workspace/h2/data
+    url: jdbc:h2:tcp://localhost/~/workspace/h2/data/querydsl
     username: sa
     password:
     driver-class-name: org.h2.Driver
-
   jpa:
     hibernate:
       ddl-auto: validate
-    properties:
-      hibernate:
-        format_sql: true
     database-platform: org.hibernate.dialect.H2Dialect
 
 logging.level:
@@ -48,17 +58,27 @@ logging.level:
 
   > Edit Configurations -> Build and run -> VM Option란에 **-Dspring.profiles.active=local** 설정
 
+* H2 Local DB 설정
+
+  * 파일생성
+
+```bash
+$ cd ~/workspace/h2
+$ touch data/local.mv.db
+```
+
 * main/resources/application-local.yml
 
 ```json
-# H2 설정 예제
+server:
+  port: 8081
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/workspace/h2/data/querydsl
+    url: jdbc:h2:tcp://localhost/~/workspace/h2/data/local
     username: sa
     password:
     driver-class-name: org.h2.Driver
-
   jpa:
     hibernate:
       ddl-auto: create
@@ -69,18 +89,6 @@ spring:
 
 logging.level:
   org.hibernate.SQL: trace
-```
-
-* Local에 H2 운영DB 설정
-  * H2 Download (https://h2database.com/html/main.html)
-  * 파일생성 및 H2 실행
-
-```bash
-$ cd ~/workspace/h2/
-$ mkdir data
-$ touch data/querydsl.mv.db
-$ chmod 755 bin/h2.sh
-$ bin/h2.sh # Web Browser 자동실행
 ```
 
 * 적용 클래스
@@ -98,13 +106,15 @@ public class InitMember {
 
 ### 3. Test Profile 설정
 
-> Junit 테스트를 위해 사용한다
+> Junit 테스트를 위해 Memory DB를 사용한다
 
-* test/resources/application-test.yml
+* test/resources/application.yml
 
 ```json
 # H2 설정 예제
 spring:
+  profiles:
+    active: test
   datasource:
     username: sa
     password:
@@ -126,15 +136,3 @@ logging:
         SQL: DEBUG
         type.descriptor.sql.BasicBinder: TRACE
 ```
-
-* 테스트 클래스
-
-> Test Class에 @ActiveProfiles("test") 추가한다
-
-```java
-@ActiveProfiles("test")
-class MemberTest {
-    ...
-}
-```
-
