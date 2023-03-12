@@ -13,7 +13,7 @@ toc_sticky: true
 
 ### 1. Default Profile 설정
 
-> default Profiles가 적용 된다.
+> default Profiles가 적용 된다. 운영서버에 적용할 수 있다
 
 * H2 운영DB 설정
   * H2 Download (https://h2database.com/html/main.html)
@@ -39,7 +39,7 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
-  jpa:
+  jpa:하기 위한 용도로 사용할 수 있다. h2를 이용해 초기데이터를 생성해서 사용할 수 있다.
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.H2Dialect
@@ -52,7 +52,7 @@ logging.level:
 
 ### 2. Local Profile 설정
 
-> 개발검증을 위해 초기데이터를 생성하는 등의 경우에 사용할 수 있다.
+> 운영서버의 설정을 변경하지 않고, 개발검증을 위한 용도로 PC에 DB등 실행 환경을 설정할 수 있다.
 
 * IntelliJ IDEA 설정
 
