@@ -21,7 +21,7 @@ https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%E
 4. Worker Node 연결 : Worker Node들을 Master에 연결하여 쿠버네티스 클러스터 구축
 5. 설치 확인 : Node와 Pod 상태 조회
 6. 대시보드 접근 : Host OS에서 웹 브라우저를 이용해 클러스터 Dashboard에 접근
-
+![Installation Step Case6 for Kubernetes](../../k8s-learning/img/Installation Step Case6 for Kubernetes.jpg)
 
 ### 1. XShell 설치
 * 다운로드 url : https://www.netsarang.com/en/free-for-home-school/
