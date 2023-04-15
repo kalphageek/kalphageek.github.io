@@ -11,6 +11,17 @@ toc_sticky: true
 
 
 
+***<참조> Spring Validation VS Java Bean Validation***
+
+- 다양한 Spring Validation Annotation
+- Service 에서도 @Valid 사용할 수 있음
+- 사용자정의 제약조건 사용 가능
+- Role별로 다른 제약조건 사용 가능
+
+https://velog.io/@rjsdn04111/Spring-Validation-VS-Java-Bean-Validation-%EC%B0%A8%EC%9D%B4-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EA%B0%81%EA%B0%81%EC%9D%98-%EA%B5%AC%ED%98%84-%EB%B0%A9%EC%8B%9D
+
+
+
 ## 1. 입력값 에러 처리 및 테스트
 
 ### 1) Controller Class
