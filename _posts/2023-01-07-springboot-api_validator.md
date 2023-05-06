@@ -123,6 +123,8 @@ public class EventControllerTest {
 ### 4) ErrorsSerializer Class
 
 > Errors 객체는 Java빈 표준을 따르지 않기 때문에 ResponseEntity에 담으려면 ErrorsSerializer를 구현해줘야 한다.<br>Global / Field error를 모두 Json으로 매핑해줘야 한다<br>ObjectMapper에 ErrorsSerializer를 등록하기 위해서 @JsonComponent를 사용한다 -> Errors를 serialize할 때 ObjectMapper가 ErrorsSerializer를 사용한다
+>
+> Field Error는 Controller에서 Dto객체를 검증할때 사용한다. 
 
 ```java
 // ObjectMapper에 ErrorsSerializer를 등록한다
