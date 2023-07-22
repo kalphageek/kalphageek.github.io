@@ -117,19 +117,21 @@ VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component SessionMachi
 ```sh
 [root@k8s-master ~]# nohup kubectl proxy --port=8001 --address=192.168.56.30 --accept-hosts='^*$' >/dev/null 2>&1 &
 ```
-* Dashboard 접근시 ServiceUnavailable 에러 발생시 아래 명령을 통해 기동안된 Pod 확인
+* Dashboard 접근시 ServiceUnavailable 에러 발생시 아래 명령을 통해 기동 안된 Pod 확인
 ```sh
 [root@k8s-master ~]# kubectl get pods -
 ```
 
 #### 3.3) Bashboard 로그인 인증
-```sh
-[root@k8s-master ~] kubectl get serviceaccounts -A
-[root@k8s-master ~] kubectl describe serviceaccounts kubernetes-dashboard -n kubernetes-dashboard
+```bash
+[root@k8s-master ~]# kubectl get serviceaccounts -A
+[root@k8s-master ~]# kubectl describe serviceaccounts kubernetes-dashboard -n kubernetes-dashboard
 ...
 Tokens:              kubernetes-dashboard-token-ccgb4
 ...
-[root@k8s-master ~] kubectl describe secrets kubernetes-dashboard-token-ccgb4 -n kubernetes-dashboard
+[root@k8s-master ~]# kubectl describe secrets kubernetes-dashboard-token-ccgb4 -n kubernetes-dashboard
 ...
 eyJhbGciOiJSUzI1NiIsImtpZCI6IjQxZW1QZzYya2JsdTBLbmxBZUhPMzI1NW13ZjF4WFltbmNsMUF5SFhSVlUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi1jY2diNCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjllODQwMGMwLTQxNzctNDQxMS04NTY2LTkwYzc0MjM4Zjc3ZSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.NkrQir7Aef6rOH87QpAocNCwxvPONt_mHLs8IRI0EeWaf9owari8hYSjStgDzyXBf2Qt9aQjdXwDGLYintr-rQC-cPxtuY5YOU0tpnohup kubectl proxy --port=8001 --address=192.168.56.30 --accept-hosts='^*$' >/dev/null 2>&1 &
 
+
+```
