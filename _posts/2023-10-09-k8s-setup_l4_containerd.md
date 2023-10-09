@@ -12,7 +12,7 @@ toc_sticky: true
 
 
 
-## * Containerd 기반 Kubernetes 설치
+# * Containerd 기반 Kubernetes 설치
 
 ### 1. 서버 환경 설정
 
@@ -104,7 +104,7 @@ kubectl get nodes
 
 
 
-## * K8S 클러스터에 Worker노드 추가
+# * K8S 클러스터에 Worker노드 추가
 
 ### 1. 마스터 노드에서 워커 노드 가입 명령 생성
 
@@ -145,7 +145,7 @@ kubectl get nodes
 
 
 
-## * L4 domain을 통한 kubernetes api server 연결 구성
+# * L4 domain을 통한 kubernetes api server 연결 구성
 
 >  l4 switch를 가지고 있고 이 switch의 domain을 "kalphageek-k8s.domain.pe" 로 dns에 설정했어. 이런 환경에서 k8s api server가 이 도메인을 통해 연결될 수 있도록 구성
 
@@ -216,7 +216,7 @@ clusters:
 
 
 
-## * Kubernetes 클러스터 동작 테스트
+# * Kubernetes 클러스터 동작 테스트
 
 ### 1. kubectl 설정 확인
 
@@ -249,7 +249,7 @@ Kubernetes 클러스터가 올바르게 작동하는지 확인하기 위해 간�
 예를 들어, 다음 YAML 파일을 사용하여 Nginx 파드와 서비스를 배포할 수 있습니다.
 
 ```yaml
-yamlCopy codeapiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
