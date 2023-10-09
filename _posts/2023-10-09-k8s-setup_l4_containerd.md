@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "K8S Install (Manual)"
+title: "K8S Setup (Manual)"
 categories: k8s
 tag: [setup, k8s, l4, containerd]
 toc: true
@@ -12,7 +12,7 @@ toc_sticky: true
 
 
 
-## * Containerd 기반 Kubernetes 설치 방법
+## * Containerd 기반 Kubernetes 설치
 
 ### 1. 서버 환경 설정
 
