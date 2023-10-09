@@ -23,7 +23,7 @@ https://kubetm.github.io/k8s/07-intermediate-basic-resource/volume/
 
 ```bash
 # 1. 설치
-$ kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/1.5.0/storageos-operator.yaml
+$ kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml
 # 2. 설치 확인
 $ kubectl get all -n storageos-operator
 # 3. Depolyment 수정 -> PVC생성시 StorageName: "" 인식할 수 있도록 함

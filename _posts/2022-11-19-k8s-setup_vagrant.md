@@ -59,10 +59,12 @@ C:\Users\사용자\k8s> vagrant up
 
 ### 4. Worker Node 연결
 * 4-1) XShell을 통해 master 접속 (id/pw: root/vagrant)
+
 * 4-2) cat 명령으로 자신에 master 접근 token 확인 및 복사
+
 ```sh
 [root@k8s-master ~]# cat ~/join.sh
-kubeadm join 192.168.56.30:6443 --token bver73.wda72kx4afiuhspo --discovery-token-ca-cert-hash sha256:7205b3fd6030e47b74aa11451221ff3c77daa0305aad0bc4a2d3196e69eb42b7
+kubeadm join 192.168.56.30:6443 --token omjen3.r3sclsu1yxtk9srr --discovery-token-ca-cert-hash sha256:dd61d452dd1cc49b475c1efd23aae0a74b5045a3cbf5cfe477714e77c58e32a4
 ```
 * 4-3) worker node1 접속 후 토큰 붙여놓기 (id/pw: root/vagrant)
 ```sh
