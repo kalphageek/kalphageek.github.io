@@ -96,12 +96,7 @@ sudo systemctl restart containerd
 kubectl get nodes
 ```
 
-## 1. Containerd 기반 Kubernetes 설치
 
-### 1. 서버 환경 설정
-
-- 마스터 노드 3대와 워커 노드 5대를 구성한다.
-- 하드웨어 레벨 4(L4) 로드 밸런서를 사용하여 마스터 노드 앞에 로드 밸런서를 구성한다.
 
 ## 2. K8S 클러스터에 Worker노드 추가
 
