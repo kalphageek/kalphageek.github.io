@@ -16,8 +16,8 @@ toc_sticky: true
 
 ### 1. 서버 환경 설정
 
-- 마스터 노드 3대와 워커 노드 5대를 구성하십시오. 각 노드는 Linux 운영 체제를 실행하고 서로 통신할 수 있어야 합니다.
-- 하드웨어 레벨 4(L4) 로드 밸런서를 사용하여 마스터 노드 앞에 로드 밸런서를 구성하십시오.
+- 마스터 노드 3대와 워커 노드 5대를 구성한다.
+- 하드웨어 레벨 4(L4) 로드 밸런서를 사용하여 마스터 노드 앞에 로드 밸런서를 구성한다.
 
 ### 2. 마스터 노드 설정
 
@@ -40,7 +40,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
-1. 마스터 노드에 kubeconfig 파일을 설정합니다.
+2. 마스터 노드에 kubeconfig 파일을 설정합니다.
 
 ```bash
 mkdir -p $HOME/.kube
@@ -48,7 +48,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-1. 네트워크 플러그인을 설치합니다. Calico를 사용할 수 있습니다.
+3. Calico 네트워크 플러그인을 설치합니다. 
 
 ```
 shellCopy code
@@ -67,7 +67,7 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-1. 마스터 노드에서 발급한 `kubeadm join` 명령을 실행하여 워커 노드를 클러스터에 추가합니다.
+2. 마스터 노드에서 발급한 `kubeadm join` 명령을 실행하여 워커 노드를 클러스터에 추가합니다.
 
 ### 4. Containerd 설치
 
@@ -77,14 +77,14 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-get update && sudo apt-get install -y containerd
 ```
 
-1. Containerd를 구성합니다.
+2. Containerd를 구성합니다.
 
 ```bash
 sudo mkdir -p /etc/containerd
 containerd config default > /etc/containerd/config.toml
 ```
 
-1. Containerd 서비스를 재시작합니다.
+3. Containerd 서비스를 재시작합니다.
 
 ```bash
 sudo systemctl restart containerd
@@ -92,15 +92,13 @@ sudo systemctl restart containerd
 
 ### 5. 클러스터 상태 확인
 
-마스터 노드에서 다음 명령을 사용하여 클러스터 상태를 확인합니다.
+1. 마스터 노드에서 다음 명령을 사용하여 클러스터 상태를 확인합니다.
 
 ```bash
 kubectl get nodes
 ```
 
-워커 노드들이 모두 Ready 상태로 나타나면 Kubernetes 클러스터가 성공적으로 설정되었습니다.
-
-이제 Kubernetes 클러스터가 구성되었으며, 컨테이너를 배포하고 관리할 수 있습니다. 필요한 경우 Helm을 사용하여 애플리케이션을 배포하고 관리하는 것도 고려해 볼 수 있습니다.
+워커 노드들이 모두 Ready 상태로 나타나면 Kubernetes 클러스터가 성공적으로 설정된것 입니다.
 
 
 
@@ -108,13 +106,11 @@ kubectl get nodes
 
 ### 1. 마스터 노드에서 워커 노드 가입 명령 생성
 
-마스터 노드에서 클러스터에 워커 노드를 추가하기 위해 다음 명령을 생성합니다. 이 명령은 마스터 노드와의 통신을 설정하고 클러스터에 참여하기 위한 정보를 포함합니다.
+마스터 노드에서 클러스터에 워커 노드를 추가하기 위해 다음 명령을 생성합니다.  이 명령을 실행하면 출력으로 `kubeadm join` 명령어가 생성됩니다.
 
 ```bash
 sudo kubeadm token create --print-join-command
 ```
-
-이 명령을 실행하면 출력으로 `kubeadm join` 명령어가 생성됩니다.
 
 ### 2. 워커 노드에서 `kubeadm join` 명령 실행
 
@@ -141,19 +137,13 @@ kubectl get nodes
 
 워커 노드가 Ready 상태로 나타나면 클러스터에 성공적으로 가입한 것입니다.
 
-워커 노드를 클러스터에 추가한 후, 새로운 파드를 배포하거나 다른 Kubernetes 작업을 수행할 수 있게 됩니다.
-
 
 
 # * L4 domain을 통한 kubernetes api server 연결 구성
 
->  l4 switch를 가지고 있고 이 switch의 domain을 "kalphageek-k8s.domain.pe" 로 dns에 설정했어. 이런 환경에서 k8s api server가 이 도메인을 통해 연결될 수 있도록 구성
-
 ### 1. Kubernetes API 서버 구성 변경
 
-마스터 노드의 Kubernetes API 서버 구성 파일을 편집하여 도메인 이름을 수용하도록 설정을 변경합니다.
-
-- SSH를 사용하여 마스터 노드에 로그인합니다.
+1. 마스터 노드의 Kubernetes API 서버 구성 파일을 편집하여 도메인 이름을 수용하도록 설정을 변경합니다.
 
 - Kubernetes API 서버 구성 파일을 엽니다. 기본적으로 `/etc/kubernetes/manifests/kube-apiserver.yaml` 경로에 위치합니다. 다음과 같이 명령을 실행하여 편집합니다.
 
@@ -173,7 +163,7 @@ kubectl get nodes
       ...
   ```
 
-- 또한 `--advertise-address` 플래그를 사용하여 API 서버가 도메인 이름을 사용하도록 설정합니다. 여기서 "datahub-k8s.skhynix.com"은 사용하려는 도메인 이름입니다.
+- 또한 `--advertise-address` 플래그를 사용하여 API 서버가 도메인 이름을 사용하도록 설정합니다. 여기서 "dkalphageek-k8s.domain.pe"은 사용하려는 도메인 이름입니다.
 
   ```yaml
   spec:
@@ -188,7 +178,7 @@ kubectl get nodes
 
 ### 2. Kubernetes API 서버 재시작
 
-API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다.
+1. API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다.
 
 ```bash
 sudo systemctl restart kubelet
@@ -196,11 +186,11 @@ sudo systemctl restart kubelet
 
 ### 3. DNS 설정
 
-"kalphageek-k8s.domain.pe" 도메인이 올바르게 해석되도록 DNS 서버에 등록되어 있는지 확인합니다. DNS 레코드가 올바르게 구성되어 있어야 합니다.
+1. "kalphageek-k8s.domain.pe" 도메인이 올바르게 해석되도록 DNS 서버에 등록되어 있는지 확인합니다. DNS 레코드가 올바르게 구성되어 있어야 합니다.
 
 ### 4. Kubectl 구성 파일 수정
 
-`kubectl` 명령을 사용하여 Kubernetes 클러스터에 연결할 때도 "kalphageek-k8s.domain.pe" 도메인을 사용할 수 있도록 `~/.kube/config` 파일을 편집합니다. 다음과 같이 클러스터에 대한 서버 URL을 도메인으로 변경합니다.
+1. `kubectl` 명령을 사용하여 Kubernetes 클러스터에 연결할 때도 "kalphageek-k8s.domain.pe" 도메인을 사용할 수 있도록 `~/.kube/config` 파일을 편집합니다. 다음과 같이 클러스터에 대한 서버 URL을 도메인으로 변경합니다.
 
 ```yaml
 clusters:
