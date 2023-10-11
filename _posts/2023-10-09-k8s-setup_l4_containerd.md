@@ -21,7 +21,7 @@ toc_sticky: true
 
 ### 2. 마스터 노드 설정
 
-1. 마스터 노드에 Kubernetes를 설치합니다.
+마스터 노드에 Kubernetes를 설치합니다.
 
 ```bash
 # 마스터 노드에서 필요한 도구 설치
@@ -34,13 +34,13 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-1. Kubernetes 초기화를 수행합니다.
+Kubernetes 초기화를 수행합니다.
 
 ```bash
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
-2. 마스터 노드에 kubeconfig 파일을 설정합니다.
+마스터 노드에 kubeconfig 파일을 설정합니다.
 
 ```bash
 mkdir -p $HOME/.kube
@@ -48,7 +48,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-3. Calico 네트워크 플러그인을 설치합니다. 
+Calico 네트워크 플러그인을 설치합니다. 
 
 ```
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
@@ -56,7 +56,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 
 ### 3. 워커 노드 설정
 
-1. 각 워커 노드에서 Kubernetes 도구를 설치합니다.
+각 워커 노드에서 Kubernetes 도구를 설치합니다.
 
 ```bash
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
@@ -66,24 +66,24 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
 
-2. 마스터 노드에서 발급한 `kubeadm join` 명령을 실행하여 워커 노드를 클러스터에 추가합니다.
+마스터 노드에서 발급한 `kubeadm join` 명령을 실행하여 워커 노드를 클러스터에 추가합니다.
 
 ### 4. Containerd 설치
 
-1. 모든 노드에 Containerd를 설치합니다.
+모든 노드에 Containerd를 설치합니다.
 
 ```bash
 sudo apt-get update && sudo apt-get install -y containerd
 ```
 
-2. Containerd를 구성합니다.
+Containerd를 구성합니다.
 
 ```bash
 sudo mkdir -p /etc/containerd
 containerd config default > /etc/containerd/config.toml
 ```
 
-3. Containerd 서비스를 재시작합니다.
+Containerd 서비스를 재시작합니다.
 
 ```bash
 sudo systemctl restart containerd
@@ -91,7 +91,7 @@ sudo systemctl restart containerd
 
 ### 5. 클러스터 상태 확인
 
-1. 마스터 노드에서 다음 명령을 사용하여 클러스터 상태를 확인합니다.
+마스터 노드에서 다음 명령을 사용하여 클러스터 상태를 확인합니다.
 
 ```bash
 kubectl get nodes
@@ -119,7 +119,7 @@ sudo kubeadm token create --print-join-command
 sudo kubeadm join <마스터_노드_IP>:<포트> --token <토큰> --discovery-token-ca-cert-hash sha256:<해시>
 ```
 
-여기서 다음과 같은 변수를 채워 넣어야 합니다:
+   여기서 다음과 같은 변수를 채워 넣어야 합니다:
 
 - `<마스터_노드_IP>`: 마스터 노드의 IP 주소 또는 호스트 이름.
 - `<포트>`: 마스터 노드에서 사용 중인 Kubernetes API 서버 포트 (기본값은 6443).
@@ -142,7 +142,7 @@ kubectl get nodes
 
 ### 1. Kubernetes API 서버 구성 변경
 
-1. 마스터 노드의 Kubernetes API 서버 구성 파일을 편집하여 도메인 이름을 수용하도록 설정을 변경합니다.
+마스터 노드의 Kubernetes API 서버 구성 파일을 편집하여 도메인 이름을 수용하도록 설정을 변경합니다.
 
 - Kubernetes API 서버 구성 파일을 엽니다. 기본적으로 `/etc/kubernetes/manifests/kube-apiserver.yaml` 경로에 위치합니다. 다음과 같이 명령을 실행하여 편집합니다.
 
@@ -177,7 +177,7 @@ kubectl get nodes
 
 ### 2. Kubernetes API 서버 재시작
 
-1. API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다.
+API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다.
 
 ```bash
 sudo systemctl restart kubelet
@@ -185,11 +185,11 @@ sudo systemctl restart kubelet
 
 ### 3. DNS 설정
 
-1. "kalphageek-k8s.domain.pe" 도메인이 올바르게 해석되도록 DNS 서버에 등록되어 있는지 확인합니다. DNS 레코드가 올바르게 구성되어 있어야 합니다.
+"kalphageek-k8s.domain.pe" 도메인이 올바르게 해석되도록 DNS 서버에 등록되어 있는지 확인합니다. DNS 레코드가 올바르게 구성되어 있어야 합니다.
 
 ### 4. Kubectl 구성 파일 수정
 
-1. `kubectl` 명령을 사용하여 Kubernetes 클러스터에 연결할 때도 "kalphageek-k8s.domain.pe" 도메인을 사용할 수 있도록 `~/.kube/config` 파일을 편집합니다. 다음과 같이 클러스터에 대한 서버 URL을 도메인으로 변경합니다.
+`kubectl` 명령을 사용하여 Kubernetes 클러스터에 연결할 때도 "kalphageek-k8s.domain.pe" 도메인을 사용할 수 있도록 `~/.kube/config` 파일을 편집합니다. 다음과 같이 클러스터에 대한 서버 URL을 도메인으로 변경합니다.
 
 ```yaml
 clusters:
