@@ -11,7 +11,7 @@ toc_sticky: true
 
 
 
-# 1. Containerd 기반 Kubernetes 설치
+## 1. Containerd 기반 Kubernetes 설치
 
 ### 1. 서버 환경 설정
 
@@ -49,7 +49,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Calico 네트워크 플러그인을 설치합니다. 
 
-```
+```bash
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
@@ -98,7 +98,9 @@ kubectl get nodes
 
 워커 노드들이 모두 Ready 상태로 나타나면 Kubernetes 클러스터가 성공적으로 설정된것 입니다.
 
-# 2. K8S 클러스터에 Worker노드 추가
+
+
+## 2. K8S 클러스터에 Worker노드 추가
 
 ### 1. 마스터 노드에서 워커 노드 가입 명령 생성
 
@@ -133,7 +135,9 @@ kubectl get nodes
 
 워커 노드가 Ready 상태로 나타나면 클러스터에 성공적으로 가입한 것입니다.
 
-# 3. L4 domain을 통한 kubernetes api server 연결 구성
+
+
+## 3. L4 domain을 통한 kubernetes api server 연결 구성
 
 ### 1. Kubernetes API 서버 구성 변경
 
@@ -198,7 +202,9 @@ clusters:
 
 이제 "kalphageek-k8s.domain.pe" 도메인을 통해 Kubernetes API 서버에 접속할 수 있어야 합니다. 이 설정을 사용하여 클러스터에 연결하고 명령을 실행할 수 있습니다.
 
-# 4. Kubernetes 클러스터 동작 테스트
+
+
+## 4. Kubernetes 클러스터 동작 테스트
 
 ### 1. kubectl 설정 확인
 
