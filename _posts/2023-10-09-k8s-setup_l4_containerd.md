@@ -172,7 +172,7 @@ kubectl get nodes
 
 ### 2. Kubernetes API 서버 재시작
 
-API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다.
+API 서버 구성을 변경한 후에는 Kubernetes API 서버를 재시작해야 합니다. 
 
 ```bash
 sudo systemctl restart kubelet
