@@ -51,7 +51,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 3. Calico 네트워크 플러그인을 설치합니다. 
 
 ```
-shellCopy code
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
