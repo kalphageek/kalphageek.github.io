@@ -17,7 +17,7 @@ kubectl 명령어와 옵션을 shortcut으로 사용할 수 있도록 bash-compl
 
 
 
-### 1. k get pods
+### 1. shortcut setup
 
 ```bash
 # install bash-completion for kubectl
@@ -44,7 +44,19 @@ k get services[tab][tab][tab]
 
 
 
-### 3. alias extionsion (k8s_rc.sh)
+### 3.option shortcut
+
+| 이름        | 축약어 | 오브젝트이름 |
+| ----------- | ------ | ------------ |
+| nodes       | no     | Node         |
+| namespaces  | ns     | Namespace    |
+| deployments | deploy | Deployment   |
+| pods        | po     | Pod          |
+| services    | svc    | Service      |
+
+
+
+### 참고. alias extionsion (k8s_rc.sh)
 
 ```bash
 #!/usr/bin/env bash
