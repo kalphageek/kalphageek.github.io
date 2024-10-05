@@ -23,6 +23,45 @@ toc_sticky: true
 * matchLabels : Label을 key, value의 정확한 값으로 선택한다.
 * matchExprssions : Label의  operator [In, Notin, Exists, Notexists]를 통해 value의 값을 선택할 수 있다로 선택할 수 있다 --> 잘 사용안함.
 
+#### 1) matchLabels
+
+> Template의 내용이 selector의 내용에 포함되어야 한다. 매치되지 않으면 에러가 발생한다
+>
+> matchLabels와 matchExpressions를 동시에 사용할 수 있다
+
+```bash
+spec:
+  selector:
+    matchLabels:
+      type: web
+      ver: v1
+    matchExpressions:
+    - {key: type, operator: In, values: [web]}
+    - {key: ver, operator: Exists}
+template:
+  metadata:
+    labels:
+      type: web
+      ver: v1
+      ver: v2
+```
+
+#### 2) matchExpressions
+
+> Label들을 세밀하게 선택할 때 사용한다. 특히 Node들을 선택할 때 주로 사용한다.
+
+```bash
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIngnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+  	       - {key: AZ-01, operator: Exists}
+```
+
+
+
 ## 3. template
 
 > Pod를 auto healing/scaling하기 위한 구성을 정의한다. pod를 생성하기위해 사용하는 설정과 동일하다.

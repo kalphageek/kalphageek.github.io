@@ -17,13 +17,15 @@ toc_sticky: true
 
 ## 1. Readness, Liveness가 필요한 시점
 
-1. Readness : Pod가 Failed된 후 새로운 Pod가 시작될때 Container는 올라왔지만 Serviced가 Booting되기 직전의 순간
-2. Liveness : Pod, Container는 정상이지만 Service가 비정상적인 동작(500 error 등)하는 경우
+1. Readness : Pod가 Failed된 후 새로운 Pod가 시작될때 Container는 올라왔지만 업무Service가 시작되기 직전의 시간 동안 Pod가 준비되지 않은상태로 표시
+2. Liveness : Pod, Container는 정상이지만 Service가 비정상적인 동작(500 error 등)하는 경우 -> Pod 재시작하도록 함
 
 ## 2. 설정 방법
 
-* Exec
-* httpGet
+* Exec : Command(cat /tmp/ready.txt) 실행해서 그에 따른 결과를 체크해서 설정
+* httpGet : Port(8080), Host(localhost), Path(/ready), HttpHeader(language:ko), Schema(http/https) 체크해서 설정
+* tcpSocket : Port(8080), Host(localhost) 체크해서 설정
+* 위 설정 중 하나는 반드시 설정되어야 한다
 
 ## 3. Exec
 
@@ -83,6 +85,38 @@ spec:
   terminationGracePeriodSeconds: 0
 ...
 ```
+
+
+
+## 6. 시나리오 (ReadnessProbe)
+
+```yaml
+ReadnessProbe
+initialDelaySeconds:5
+periodSeconds: 10
+successThredshold: 3
+
+Container에서 서비스가 정상적으로 기동되면 마지막 단계로 ready.txt를 생성하는 로직을 넣는다. 
+그러면 K8S는 Container가 시작된 5초후부터 10초간격으로 ready.txt를 체크해서 3회 정상적으로 확인되면, Pod의 ContainerReady를 true, Ready를 true로 설정한다. 그리고 Endpoint도 Pod의 IP가 NotReadAddr -> Addresses로 위치가 바뀐다. 
+```
+
+
+
+## 7. 시나리오 (LivenessProbe)
+
+```yaml
+LivenessProbe
+initialDelaySeconds:5
+periodSeconds: 10
+failureThredshold: 3
+
+Liveness로 httpGet으로 /health체크
+그러면 K8S는 Container가 시작된 5초후부터 10초간격으로 체크해서 3회 실패하면, Pod 재시작 된디ㅏ
+```
+
+
+
+
 
 
 

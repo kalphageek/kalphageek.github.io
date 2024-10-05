@@ -2,7 +2,7 @@
 layout: single
 title: "K8S Volume - StorageOS"
 categories: k8s
-tag: [volume, storage, dynimic, provisioning, pv, pvc]
+tag: [volume, storage, dynimic, provisioning, pv, pvc, base64, encoding]
 toc: true
 toc_sticky: true
 #author_profile: false
