@@ -11,6 +11,8 @@ toc_sticky: true
 
 
 
+>  설치가 간편하다
+
 # 1. PLG 설치
 
 ```bash
