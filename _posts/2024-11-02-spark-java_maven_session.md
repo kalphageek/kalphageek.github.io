@@ -13,8 +13,6 @@ toc_sticky: true
 
 ### 1. Maven Project Setup
 
-<pom.xml>
-
 ```xml
 <dependencies>
     <!-- Spark Core -->
@@ -56,6 +54,7 @@ args[2] is "D" - specifies the delete condition. ("id = 123")
 ```java
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
+
 public static void main(String[] args) {
     SparkSession spark = SparkSession.builder()
             .appName("IcebergSparkApp")
@@ -69,7 +68,7 @@ public static void main(String[] args) {
             // Create Table with Merge-on-Read Enabled
             TableCreation.createTable(spark, "my_catalog.my_table", args[3], args[4]);
 			break;
-        "S:
+        "S":
             // Select, Upsert, and Delete Examples
             Dataset<Row> result = SelectOperation.performSelect(spark, "my_catalog.my_table", args[3]);
             result.show();

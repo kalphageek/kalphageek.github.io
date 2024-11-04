@@ -1,8 +1,7 @@
 ---
 layout: single
 title: "Ansible"
-categories: k8ss
-      blockinfile:
+categories: k8s
 tag: [ansible, install, yum, nameserver, resolv.conf, shell, copy, user, yum, ansible-playbook, blockinfile]
 toc: true
 toc_sticky: true
